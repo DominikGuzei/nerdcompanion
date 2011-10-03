@@ -13,26 +13,27 @@ end
 
 gem 'jquery-rails'
 
-gem "bson_ext", ">= 1.3.1"
-gem "mongoid", ">= 2.2.0"
-gem "omniauth", ">= 0.3.0.rc3"
+gem "bson_ext"
+gem "mongoid"
+gem "omniauth"
 gem "frontend-helpers"
 
-group :development, :test do
-  gem "launchy", ">= 2.0.5", :group => :test
-  gem "guard", ">= 0.6.2", :group => :development
-  gem "guard-bundler", ">= 0.1.3", :group => :development
-  gem "guard-rails", ">= 0.0.3", :group => :development
-  gem "guard-livereload", ">= 0.3.0", :group => :development
-  gem "guard-rspec", ">= 0.4.3", :group => :development
-  gem "guard-cucumber", ">= 0.6.1", :group => :development
+group :development do
+  gem "thor"
+  gem "guard"
+  gem "guard-bundler"
+  gem "guard-rails"
+  gem "guard-livereload"
+  gem "guard-rspec"
+  gem "guard-cucumber"
+  gem "rspec-rails"
 end
 
 group :test do
-  gem "rspec-rails", ">= 2.6.1", :group => [:development, :test]
-  gem "database_cleaner", ">= 0.6.7", :group => :test
-  gem "mongoid-rspec", ">= 1.4.4", :group => :test
-  gem "factory_girl_rails", ">= 1.2.0", :group => :test
-  gem "cucumber-rails", ">= 1.0.2", :group => :test
-  gem "capybara", ">= 1.1.1", :group => :test
+  gem "launchy"
+  gem "database_cleaner"
+  gem "mongoid-rspec"
+  gem "factory_girl_rails"
+  gem "cucumber-rails"
+  gem "capybara"
 end

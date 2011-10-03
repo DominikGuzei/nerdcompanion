@@ -1,0 +1,22 @@
+apps:
+  staging: nerdcompanion-staging
+  production: nerdcompanion
+development: &defaults
+  admins: 'Dominik Guzei'
+  domain_url: http://localhost:3000
+  twitter_key: 'SRVbGm7rDsxK07vQ4enSA'
+  twitter_secret: 'IJxNIP0mXiK7C0IIhP5HYW2joW9wO5iRDtSsV7R60'
+test:
+  <<: *defaults
+staging:
+  bundle_without: development:test
+  admins: 'Dominik Guzei'
+  domain_url: http://nerdcompanion.heroku.com
+  twitter_key: 'SRVbGm7rDsxK07vQ4enSA'
+  twitter_secret: 'IJxNIP0mXiK7C0IIhP5HYW2joW9wO5iRDtSsV7R60'
+production:
+  bundle_without: development:test
+  admins: 'Dominik Guzei'
+  domain_url: http://nerdcompanion.heroku.com
+  twitter_key: 'SRVbGm7rDsxK07vQ4enSA'
+  twitter_secret: 'IJxNIP0mXiK7C0IIhP5HYW2joW9wO5iRDtSsV7R60'
