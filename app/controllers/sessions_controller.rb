@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     redirect_to '/auth/twitter'
   end
 
-
   def create
     auth = request.env["omniauth.auth"]
     user = User.where(:provider => auth['provider'], 
