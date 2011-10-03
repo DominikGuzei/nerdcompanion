@@ -122,7 +122,7 @@ body {
 
 #mainCol {
 	width: 45em;
-	margin-left: 2em;
+	margin-left: 1.2em;
 	}
 
 #subCol {
@@ -172,29 +172,19 @@ a, a:link, a:visited {
 	float: right;
 	margin-top: 1.5em;
 	font-size: 1.2857em;
-  width: 30em;
 }
 
 #header .nav li {margin: 0 0 0 0.5em;}
 #header .nav a {color: #FFF; text-decoration: none;}
 #header .nav a:hover {text-decoration: underline;}
 
-#header .nav .index {
-	padding: 0.5em 1.5em;
-	border-radius: 1em;
-	-webkit-border-radius: 1em;
-	-moz-border-radius: 1em;
-	background: #980905;
-	position: relative;
+#sign-in-twitter {
+	background: url(/assets/auth/sign_in_with_twitter_light.png);
+	width: 151px;
+	height: 24px;
+	display: inline-block;
+	text-indent: -10000px;
 }
-
-#header .nav .index a {
-	background: #980905 no-repeat right top;
-	position: relative;
-	z-index: 15;
-	padding-bottom: 0.125em;
-}
-#header .nav .index:hover a, #header .nav .index a:hover {background-position: right -81px;}
 
 #guides {
 	width: 27em;

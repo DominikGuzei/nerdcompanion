@@ -6,4 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require shCore
 //= require_tree .
+
+SyntaxHighlighter.all();
