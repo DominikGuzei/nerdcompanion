@@ -1,7 +1,7 @@
-NerdComposer::Application.routes.draw do
+NerdCompanion::Application.routes.draw do
   #get \"users\/show\"
 
-  root :to => "home#index"
+  root :to => "guide#index"
 
   resources :users, :only => [ :show, :edit, :update ]
 

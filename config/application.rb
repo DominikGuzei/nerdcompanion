@@ -17,7 +17,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module NerdComposer
+module NerdCompanion
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers
