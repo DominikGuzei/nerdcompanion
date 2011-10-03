@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-NerdComposer::Application.load_tasks
+NerdCompanion::Application.load_tasks

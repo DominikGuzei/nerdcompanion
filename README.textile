@@ -1,4 +1,4 @@
-h1. Nerd Composer
+h1. Nerd Companion
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
