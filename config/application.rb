@@ -10,12 +10,9 @@ require "sprockets/railtie"
 
 load(File.expand_path('../heroku_env.rb', __FILE__))
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+# If you have a Gemfile, require the gems listed there, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require *Rails.groups(:assets) if defined?(Bundler)
 
 module NerdCompanion
   class Application < Rails::Application
