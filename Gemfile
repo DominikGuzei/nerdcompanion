@@ -16,6 +16,7 @@ gem "sproutcore-rails"
 
 gem "bson_ext"
 gem "mongoid"
+gem 'mongoid_slug'
 gem "omniauth"
 gem "frontend-helpers"
 
