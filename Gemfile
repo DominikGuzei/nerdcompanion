@@ -16,6 +16,7 @@ gem "sproutcore-rails"
 
 gem "bson_ext"
 gem "mongoid"
+gem 'mongoid_slug'
 gem "omniauth"
 gem "frontend-helpers"
 
@@ -37,4 +38,6 @@ group :test do
   gem "factory_girl_rails"
   gem "cucumber-rails"
   gem "capybara"
+  gem "rb-fsevent"
+  gem "growl_notify"
 end
