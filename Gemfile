@@ -1,6 +1,9 @@
 require 'rbconfig'
 source 'http://rubygems.org'
 
+# rack 1.3.4 causes: already initialized constant WFKV_
+# and prevents asset precompilation on heroku
+gem 'rack', '1.3.3'
 gem 'rails', '3.1.0'
 gem 'thin'
 gem "heroku"
