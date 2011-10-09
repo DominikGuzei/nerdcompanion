@@ -49,6 +49,9 @@ function addBlockToGuide( block ) {
   else if(block.hasClass('h2')) {
     addHeading2ToGuide( block );
   }
+  else if(block.hasClass('h3')) {
+    addHeading3ToGuide( block );
+  }
   
   // add class to mark this tool as inserted
   block.addClass('in-guide');
@@ -107,6 +110,11 @@ function addHeading2ToGuide( heading ) {
   heading.html('<h4>H2</h4><input type="text">');
 }
 
+function addHeading3ToGuide( heading ) {
+  // headings are based on text fields
+  heading.html('<h5>H3</h5><input type="text">');
+}
+
 $('#guide-submit').click(function(event) {
   event.preventDefault();
   
@@ -135,6 +143,10 @@ $('#guide-submit').click(function(event) {
     }
     else if($(this).hasClass('h2')) {
       block.type = "h2";
+      block.content = $(this).find('input').val();
+    }
+    else if($(this).hasClass('h3')) {
+      block.type = "h3";
       block.content = $(this).find('input').val();
     }
    
