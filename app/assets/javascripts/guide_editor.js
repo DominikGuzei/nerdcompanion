@@ -38,37 +38,6 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
   }
 });
 
-$('#guide-submit').click(function(event) {
-  event.preventDefault();
-  
-  // save title and description
-  var guide = {
-    title: $('#guide-title').val(),
-    description: $('#guide-description').val(),
-    blocks: []
-  };
-  
-  // gather all content blocks of the guide
-  $('#guide-content-list li').each(function() {
-    
-    var block = {};
-    
-    if($(this).hasClass('paragraph')) {
-      block.type = "paragraph";
-      var textarea = $(this).find('textarea');
-      
-      textarea.cleditor()[0].updateTextArea();
-      block.content = textarea.val();
-    }
-   
-    guide.blocks.push( block );
-    
-  });
-  
-  sendGuideDataToServer( guide );
-  
-});
-
 function addBlockToGuide( block ) {
   
   if(block.hasClass('paragraph')) {
@@ -129,6 +98,41 @@ function addHeading1ToGuide( heading ) {
   // headings are based on text fields
   heading.html('<h3>H1</h3><input type="text">');
 }
+
+$('#guide-submit').click(function(event) {
+  event.preventDefault();
+  
+  // save title and description
+  var guide = {
+    title: $('#guide-title').val(),
+    description: $('#guide-description').val(),
+    blocks: []
+  };
+  
+  // gather all content blocks of the guide
+  $('#guide-content-list li').each(function() {
+    
+    var block = {};
+    
+    if($(this).hasClass('paragraph')) {
+      block.type = "paragraph";
+      var textarea = $(this).find('textarea');
+      
+      textarea.cleditor()[0].updateTextArea();
+      block.content = textarea.val();
+    }
+    else if($(this).hasClass('h1')) {
+      block.type = "h1";
+      block.content = $(this).find('input').val();
+    }
+   
+    guide.blocks.push( block );
+    
+  });
+  
+  sendGuideDataToServer( guide );
+  
+});
 
 function sendGuideDataToServer( guide ) {
   

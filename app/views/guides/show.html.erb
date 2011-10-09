@@ -14,9 +14,17 @@
     <div id="mainCol">
       
       <% @guide.blocks.each do |block| %>
-      
-        <p><%= block.content %></p>
-      
+        
+        <% case block.type
+             when "paragraph" %>
+             
+              <p><%= block.content %></p>
+          
+          <% when "h1" %>
+            <h3><%= block.content %></h3>
+            
+        <% end %>
+        
       <% end %>
       
 		</div>
