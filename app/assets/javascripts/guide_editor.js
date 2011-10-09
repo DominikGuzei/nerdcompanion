@@ -48,11 +48,6 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
     })[0];
     
     editor.focus();
-    $(editor.doc).scroll(function() {
-      var parent = editor.$main.parent();
-      parent.height( parent.height() + 20 );
-      editor.refresh();
-    });
     
     // draggables within guide content should
     // be sorted without helper, otherwise the
