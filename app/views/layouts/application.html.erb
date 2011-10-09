@@ -10,21 +10,23 @@
   <title>NerdCompanion - Rails Guides for the Rest of us</title>
   <meta name="description" content="Creating beautiful guides made easy.">
   <meta name="author" content="Dominik Guzei">
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :dynamic_stylesheets %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= params[:controller] %>">
 	
 	<div id="topNav">
-    <div class="wrapper"></div>
+    <div class="wrapper">
+      <%= render 'shared/top_navigation' %>
+    </div>
   </div>
   
   <div id="header">
 		<div class="wrapper clearfix">
       <h1><%= link_to_unless_current("NerdCompanion Home", { :controller => "guides",  :action => "index" }) %></h1>
     	<p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
-      <%= render 'shared/navigation' %>
+      <%= render 'shared/main_navigation' %>
     </div>
   </div>
   
@@ -35,6 +37,8 @@
   <div id="footer">
     <div class="wrapper"></div>
   </div>
-    
+  
+  <%= javascript_include_tag "application" %>
+  <%= yield :dynamic_javascripts %>  
 </body>
 </html>

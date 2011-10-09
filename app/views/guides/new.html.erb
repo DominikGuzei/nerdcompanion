@@ -1,5 +1,39 @@
+
 <%= form_for @guide do |f| %>
-  <%= f.text_field :title, :id => 'guide-title' %>
-  <%= f.text_area :description, :id => 'guide-description' %>
-  <%= f.submit "Create", :id => 'guide-submit' %>
+
+<div id="feature">
+  <div class="wrapper">
+      <h2>Create new Guide</h2>
+      <%= f.label :title, 'Title:' %>
+      <%= f.text_field :title, :id => 'guide-title' %>
+      <%= f.label :description, 'Description:' %>
+      <%= f.text_area :description, :id => 'guide-description' %>
+  </div>
+</div>
+
+<div id="container">
+  <div class="wrapper">
+    
+    <div id="mainCol">
+      <h3>Guide Text Blocks</h3>
+      <p>Drag and Drop Text Elements from the toolbox (bottom) to this area<p>
+      <ul id="guide-content-list"></ul>
+      <%= f.submit "Save", :id => 'guide-submit' %>
+    </div>
+    
+  </div>
+</div>
+
+<ul id="guide-toolbox-list">
+  <li class="tool paragraph">Paragraph</li>
+</ul>
+
 <% end %>
+
+<% content_for :dynamic_stylesheets do %>
+  <%= stylesheet_link_tag "guide_editor" %>
+<%end%>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_editor" %>
+<%end%>

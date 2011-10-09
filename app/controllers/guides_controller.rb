@@ -1,5 +1,7 @@
 class GuidesController < ApplicationController
   
+  before_filter :require_login, :only => ['new', 'create']
+  
   def index
   end
   
@@ -19,9 +21,18 @@ class GuidesController < ApplicationController
     @guide = Guide.new(params[:guide])
     
     if @guide.save
-      redirect_to @guide
-    else
-      render :action => "new"
+      respond_to do |format|
+        format.json { render :json => @guide.to_json }
+      end
+    end
+  end
+ 
+  private
+ 
+  def require_login
+    unless user_signed_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to home_path # halts request cycle
     end
   end
   
