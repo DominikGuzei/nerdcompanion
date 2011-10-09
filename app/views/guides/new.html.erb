@@ -1,3 +1,4 @@
+
 <%= form_for @guide do |f| %>
   <%= f.text_field :title, :id => 'guide-title' %>
   <%= f.text_area :description, :id => 'guide-description' %>
@@ -8,3 +9,11 @@
 <ul id="guide-toolbox-list">
   <li class="paragraph">Paragraph</li>
 </ul>
+
+<% content_for :dynamic_stylesheets do %>
+  <%= stylesheet_include_tag "guide_editor" %>
+<%end%>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_editor" %>
+<%end%>

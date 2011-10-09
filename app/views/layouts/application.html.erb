@@ -10,8 +10,8 @@
   <title>NerdCompanion - Rails Guides for the Rest of us</title>
   <meta name="description" content="Creating beautiful guides made easy.">
   <meta name="author" content="Dominik Guzei">
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :dynamic_stylesheets %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= params[:controller] %>">
@@ -35,6 +35,8 @@
   <div id="footer">
     <div class="wrapper"></div>
   </div>
-    
+  
+  <%= javascript_include_tag "application" %>
+  <%= yield :dynamic_javascripts %>  
 </body>
 </html>
