@@ -22,10 +22,6 @@ When /^I fill in all mandatory fields$/ do
   When 'I insert "The guide description" as description'
 end
 
-When /^I create a guide with a description$/ do
-  When "I fill in all mandatory fields"
-end
-
 Then /I should see the guide editor/ do
   page.should have_selector('#guide-submit')
 end
@@ -33,8 +29,4 @@ end
 Then /^I should see my created guide$/ do
   find('h2#guide-title').should have_content(@guide_title)
   find('#feature p').should have_content(@guide_description)
-end
-
-Then /^I should see my guide with the description$/ do
-  Then "I should see my created guide"
 end

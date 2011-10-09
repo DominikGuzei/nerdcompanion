@@ -65,3 +65,5 @@ tmp/*
 
 # keep OmniAuth service provider secrets out of the Git repo
 config/heroku.rb
+
+chromedriver.log

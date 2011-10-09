@@ -65,9 +65,64 @@ h2 {
 
 #guide-content-list li.tool {
   padding: 0;
-  margin: 0;
-  height: 150px;
+  margin: 1em 0;
+  background: none;
 }
+
+/* HEADING 1 */
+#guide-content-list li.h1 h3 {
+  display: inline;
+  margin: 10px;
+  color: #999;
+}
+
+#guide-content-list li.h1 input {
+  font-size: 1.7142em;
+  line-height: 1.286em;
+  font-weight: bold;
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 554px;
+}
+
+/* HEADING 2 */
+#guide-content-list li.h2 h4 {
+  display: inline;
+  margin: 10px 12px 10px 15px;
+  color: #999;
+}
+
+#guide-content-list li.h2 input {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: bold;
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 559px;
+}
+
+/* HEADING 3 */
+#guide-content-list li.h3 h5 {
+  display: inline;
+  margin: 10px 11px 10px 21px;
+  color: #999;
+}
+
+#guide-content-list li.h3 input {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: bold;  
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 559px;
+}
+
+/* PARAGRAPH */
+#guide-content-list li.paragraph {
+  height: 150px;
+  width: 565px;
+  margin-left: 50px;
+} 
 
 #guide-submit {
   padding: 0.5em 1em;

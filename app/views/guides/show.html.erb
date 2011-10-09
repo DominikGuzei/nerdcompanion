@@ -14,9 +14,23 @@
     <div id="mainCol">
       
       <% @guide.blocks.each do |block| %>
-      
-        <p><%= block.content %></p>
-      
+        
+        <% case block.type
+             when "paragraph" %>
+             
+              <p><%= sanitize block.content, :tags => %w(span strong italic ul ol li), :attributes => %w(style) %></p>
+          
+          <% when "h1" %>
+            <h3><%= block.content %></h3>
+            
+          <% when "h2" %>
+            <h4><%= block.content %></h4>
+            
+          <% when "h3" %>
+            <h5><%= block.content %></h5>
+            
+        <% end %>
+        
       <% end %>
       
 		</div>
