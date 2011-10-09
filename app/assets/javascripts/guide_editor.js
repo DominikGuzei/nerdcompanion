@@ -20,8 +20,7 @@ $(function() {
 $("#guide-content-list").bind("sortstart", function(event, ui) {
   
   if(ui.item.hasClass('in-guide')) {
-    var editor = ui.item.find('textarea').cleditor()[0];
-    editor.updateTextArea();
+    updateBlockBeforeSort( ui.item );
   }
    
 });
@@ -33,34 +32,9 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
   // everything else is just sorting
   
   if(!ui.item.hasClass('in-guide')) {
-    
-    // all content blocks are based on textarea
-    ui.item.html("<textarea>");
-    
-    // initialize CLEditor instance with created textarea
-    var editor = ui.item.find('textarea').cleditor({
-      width: "100%",
-      height: "100%",
-      controls: "bold italic | bullets numbering",
-      useCSS: true,
-      docCSSFile: "/assets/guide_editor_doc.css",
-      bodyStyle: ""
-    })[0];
-    
-    editor.focus();
-    
-    // draggables within guide content should
-    // be sorted without helper, otherwise the
-    // content gets destroyed
-    ui.item.draggable("option", "helper", "original");
-    
-    // add class to mark this tool as inserted
-    ui.item.addClass('in-guide');
+    addBlockToGuide(ui.item);
   } else {
-    var editor = ui.item.find('textarea').cleditor()[0];
-    editor.refresh();
-    editor.focus();
-    editor.updateTextArea();
+    updateBlockAfterSort( ui.item );
   }
 });
 
@@ -94,6 +68,67 @@ $('#guide-submit').click(function(event) {
   sendGuideDataToServer( guide );
   
 });
+
+function addBlockToGuide( block ) {
+  
+  if(block.hasClass('paragraph')) {
+    addParagraphToGuide( block );
+  }
+  else if(block.hasClass('h1')) {
+    addHeading1ToGuide( block );
+  }
+  
+  // add class to mark this tool as inserted
+  block.addClass('in-guide');
+  
+  // draggables within guide content should
+  // be sorted without helper, otherwise the
+  // content gets destroyed
+  block.draggable("option", "helper", "original");
+}
+
+function updateBlockBeforeSort( block ) {
+  
+  if( block.hasClass('paragraph') ) {
+    var editor = block.find('textarea').cleditor()[0];
+    editor.updateTextArea();
+  }
+  
+}
+
+function updateBlockAfterSort( block ) {
+  
+  if( block.hasClass('paragraph') ) {
+    var editor = block.find('textarea').cleditor()[0];
+    editor.refresh();
+    editor.focus();
+    editor.updateTextArea();
+  }
+  
+}
+
+function addParagraphToGuide( paragraph ) {
+  // paragraphs are based on textarea
+  paragraph.html("<textarea>");
+  
+  // initialize CLEditor instance with created textarea
+  var editor = paragraph.find('textarea').cleditor({
+    width: "100%",
+    height: "100%",
+    controls: "bold italic | bullets numbering",
+    useCSS: true,
+    docCSSFile: "/assets/guide_editor_doc.css",
+    bodyStyle: ""
+  })[0];
+  
+  editor.focus();
+  
+}
+
+function addHeading1ToGuide( heading ) {
+  // headings are based on text fields
+  heading.html('<h3>H1</h3><input type="text">');
+}
 
 function sendGuideDataToServer( guide ) {
   
