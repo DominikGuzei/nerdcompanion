@@ -1,5 +1,10 @@
 <%= form_for @guide do |f| %>
   <%= f.text_field :title, :id => 'guide-title' %>
   <%= f.text_area :description, :id => 'guide-description' %>
+  <ul id="guide-content-list"></ul>
   <%= f.submit "Create", :id => 'guide-submit' %>
 <% end %>
+
+<ul id="guide-toolbox-list">
+  <li class="paragraph">Paragraph</li>
+</ul>
