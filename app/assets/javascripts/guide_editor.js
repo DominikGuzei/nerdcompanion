@@ -60,5 +60,52 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
     var editor = ui.item.find('textarea').cleditor()[0];
     editor.refresh();
     editor.focus();
+    editor.updateTextArea();
   }
 });
+
+$('#guide-submit').click(function(event) {
+  event.preventDefault();
+  
+  // save title and description
+  var guide = {
+    title: $('#guide-title').val(),
+    description: $('#guide-description').val(),
+    blocks: []
+  };
+  
+  // gather all content blocks of the guide
+  $('#guide-content-list li').each(function() {
+    
+    var block = {};
+    
+    if($(this).hasClass('paragraph')) {
+      block.type = "paragraph";
+      var textarea = $(this).find('textarea');
+      
+      textarea.cleditor()[0].updateTextArea();
+      block.content = textarea.val();
+    }
+   
+    guide.blocks.push( block );
+    
+  });
+  
+  sendGuideDataToServer( guide );
+  
+});
+
+function sendGuideDataToServer( guide ) {
+  
+  $.ajax('/guides', {
+    type: 'POST',
+    data: JSON.stringify({
+      guide: guide
+    }),
+    contentType: "application/json",
+    success: function(guide) {
+      window.location = "/guides/" + guide.slug;
+    }
+  });
+  
+}

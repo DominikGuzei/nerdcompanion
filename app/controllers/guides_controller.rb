@@ -21,9 +21,9 @@ class GuidesController < ApplicationController
     @guide = Guide.new(params[:guide])
     
     if @guide.save
-      redirect_to @guide
-    else
-      render :action => "new"
+      respond_to do |format|
+        format.json { render :json => @guide.to_json }
+      end
     end
   end
  

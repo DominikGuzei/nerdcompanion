@@ -13,6 +13,12 @@
     
     <div id="mainCol">
       
+      <% @guide.blocks.each do |block| %>
+      
+        <p><%= block.content %></p>
+      
+      <% end %>
+      
 		</div>
 		
   </div>

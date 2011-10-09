@@ -7,6 +7,8 @@ class Guide
   
   field :description, :type => String
   
-  attr_accessible :title, :description
+  embeds_many :blocks
+  
+  attr_accessible :title, :description, :blocks
   validates_presence_of :title, :description
 end
