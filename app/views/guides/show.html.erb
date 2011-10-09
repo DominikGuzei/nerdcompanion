@@ -18,9 +18,12 @@
         <% case block.type
              when "paragraph" %>
              
-              <p><%= block.content %></p>
+              <p><%= sanitize block.content, :tags => %w(span strong italic ul ol li), :attributes => %w(style) %></p>
           
           <% when "h1" %>
+            <h3><%= block.content %></h3>
+            
+          <% when "h2" %>
             <h3><%= block.content %></h3>
             
         <% end %>

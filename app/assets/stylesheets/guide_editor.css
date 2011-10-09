@@ -69,9 +69,10 @@ h2 {
   background: none;
 }
 
+/* HEADING 1 */
 #guide-content-list li.h1 h3 {
   display: inline;
-  margin: 0.3em;
+  margin: 10px;
   color: #999;
 }
 
@@ -81,13 +82,30 @@ h2 {
   font-weight: bold;
   padding: 0.1em 0.3em;
   border: 1px solid #ccc;
-  width: 88%;
+  width: 554px;
 }
 
+/* HEADING 2 */
+#guide-content-list li.h2 h4 {
+  display: inline;
+  margin: 10px 12px 10px 15px;
+  color: #999;
+}
+
+#guide-content-list li.h2 input {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: bold;
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 559px;
+}
+
+/* PARAGRAPH */
 #guide-content-list li.paragraph {
   height: 150px;
-  width: 90%;
-  margin-left: 3.2em;
+  width: 565px;
+  margin-left: 50px;
 } 
 
 #guide-submit {
