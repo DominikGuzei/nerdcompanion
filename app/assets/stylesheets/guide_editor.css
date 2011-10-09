@@ -1,0 +1,65 @@
+/* @override http://localhost:3000/assets/guide_editor.css?body=1 */
+
+/*
+ *= require jquery_cleditor
+ */
+
+#feature .wrapper {
+  padding-top: 1em;
+}
+
+#guide-title {
+  font-size: 2.1428em;
+  line-height: 1em;
+  margin: 0.3em 0 .6em;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  width: 800px;
+}
+
+#guide-description {
+  width: 800px;
+  height: 100px;
+  padding: 5px 10px;
+  font-size: 1.2857em;
+  margin-bottom: 0.75em;
+}
+
+#feature label {
+  font-size: 1.3em;
+}
+
+#guide-toolbox-list {
+  padding: 1em 0;
+  background: url(/assets/footer_tile.gif) repeat-x;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #222;
+  margin: 0;
+}
+
+#guide-toolbox-list li {
+  display: block;
+  width: 100px;
+  line-height: 2em;
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  margin-left: 1em;
+  color: black;
+}
+
+#guide-content-list {
+  border: 1px solid #ccc;
+  background: #efefef;
+  min-height: 100px;
+  width: 100%;
+  margin: 1em 0;
+}
+
+#guide-content-list li.tool {
+  padding: 0;
+  margin: 0;
+  height: 150px;
+}
