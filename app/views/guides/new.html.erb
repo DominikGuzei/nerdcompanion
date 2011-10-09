@@ -3,6 +3,7 @@
 
 <div id="feature">
   <div class="wrapper">
+      <h2>Create new Guide</h2>
       <%= f.label :title, 'Title:' %>
       <%= f.text_field :title, :id => 'guide-title' %>
       <%= f.label :description, 'Description:' %>
@@ -14,6 +15,8 @@
   <div class="wrapper">
     
     <div id="mainCol">
+      <h3>Guide Text Blocks</h3>
+      <p>Drag and Drop Text Elements from the toolbox (bottom) to this area<p>
       <ul id="guide-content-list"></ul>
       <%= f.submit "Create", :id => 'guide-submit' %>
     </div>

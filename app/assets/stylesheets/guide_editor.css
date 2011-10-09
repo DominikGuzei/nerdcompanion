@@ -8,6 +8,10 @@
   padding-top: 1em;
 }
 
+h2 {
+  margin-bottom: 1em;
+}
+
 #guide-title {
   font-size: 2.1428em;
   line-height: 1em;
@@ -39,7 +43,7 @@
   margin: 0;
 }
 
-#guide-toolbox-list li {
+#guide-toolbox-list li.tool {
   display: block;
   width: 100px;
   line-height: 2em;
@@ -48,12 +52,13 @@
   background-color: #eee;
   margin-left: 1em;
   color: black;
+  cursor: move;
 }
 
 #guide-content-list {
   border: 1px solid #ccc;
   background: #efefef;
-  min-height: 100px;
+  min-height: 200px;
   width: 100%;
   margin: 1em 0;
 }
