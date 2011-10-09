@@ -8,9 +8,8 @@ Feature: Add description to guide
   
   Scenario: Guide writer creates new guide with description
     
-		Given I am logged in and on the create guide page
+    Given I am logged in
+    And I am on the create guide page
     When I create a guide with a description
+    And click on the save button
     Then I should see my guide with the description
-  
-  
-

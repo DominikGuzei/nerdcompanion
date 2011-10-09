@@ -2,13 +2,13 @@
 Feature: Create Guide
   
   In order to share my knowledge about a certain topic or technology
-  As a logged-in user
+  As a logged in user
   I want to create a new guide
 
 	@omniauth_test
-  Scenario: Logged in user creates guide
+  Scenario: Logged in user navigates to guide editor
   
-    Given I am logged in and on the create guide page
-    When I insert "My First Guide" as title
-    And click on the save button
-    Then I should see my guide with the title as headline
+    Given I am logged in
+    And I am on the home page
+    When I click on create guide
+    Then I should see the guide editor
