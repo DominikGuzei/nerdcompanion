@@ -1,4 +1,5 @@
-@omniauth_test
+
+@omniauth_test @guide @paragraph
 Feature: Add paragraphs
 
   In order to write about my topic and emphasize certain things
