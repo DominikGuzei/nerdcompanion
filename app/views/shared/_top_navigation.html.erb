@@ -1,0 +1,9 @@
+<ul class="nav">
+  
+  <% if user_signed_in? %>
+    
+    <li>Logged in as <%= current_user.name %></li>
+  	<li><%= link_to('Sign out', signout_path, :id => 'sign-out')  %></a></li>
+  
+  <% end %>
+</ul>

@@ -17,14 +17,16 @@
 <body class="<%= params[:controller] %>">
 	
 	<div id="topNav">
-    <div class="wrapper"></div>
+    <div class="wrapper">
+      <%= render 'shared/top_navigation' %>
+    </div>
   </div>
   
   <div id="header">
 		<div class="wrapper clearfix">
       <h1><%= link_to_unless_current("NerdCompanion Home", { :controller => "guides",  :action => "index" }) %></h1>
     	<p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
-      <%= render 'shared/navigation' %>
+      <%= render 'shared/main_navigation' %>
     </div>
   </div>
   
