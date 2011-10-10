@@ -38,14 +38,16 @@ h2 {
   background: url(/assets/footer_tile.gif) repeat-x;
   position: fixed;
   bottom: 0;
+  left: 0;
   width: 100%;
   background: #222;
   margin: 0;
+  list-style-type: none;
 }
 
 #guide-toolbox-list li.tool {
   display: block;
-  width: 100px;
+  padding: 0.1em 0.8em;
   line-height: 2em;
   float: left;
   border: 1px solid #ccc;
@@ -53,6 +55,7 @@ h2 {
   margin-left: 1em;
   color: black;
   cursor: move;
+  background-image: none;
 }
 
 #guide-content-list {

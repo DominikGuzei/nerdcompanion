@@ -1,39 +1,43 @@
 
-<div id="feature">
-  <div class="wrapper">
+<% content_for :featured do %>
+  
+  <p class="author">This guide was written by <%= link_to @guide.user.name, @guide.user %></p>
+  <h2 id="guide-title"><%= @guide.title %></h2>
+  <p><%= @guide.description %></p>
     
-    <h2 id="guide-title"><%= @guide.title %></h2>
-    <p><%= @guide.description %></p>
-    
-  </div>
-</div>
+<% end %>
 
-<div id="container">
-  <div class="wrapper">
+<% content_for :main do %>
+      
+  <% @guide.blocks.each do |block| %>
     
-    <div id="mainCol">
+    <% case block.type
+         when "paragraph" %>
+         
+          <p>
+            <%= sanitize block.content, :tags => %w(span strong italic ul ol li), 
+                                        :attributes => %w(style) %>
+          </p>
       
-      <% @guide.blocks.each do |block| %>
+      <% when "h1" %>
+        <h3><%= block.content %></h3>
         
-        <% case block.type
-             when "paragraph" %>
-             
-              <p><%= sanitize block.content, :tags => %w(span strong italic ul ol li), :attributes => %w(style) %></p>
-          
-          <% when "h1" %>
-            <h3><%= block.content %></h3>
-            
-          <% when "h2" %>
-            <h4><%= block.content %></h4>
-            
-          <% when "h3" %>
-            <h5><%= block.content %></h5>
-            
-        <% end %>
+      <% when "h2" %>
+        <h4><%= block.content %></h4>
         
-      <% end %>
+      <% when "h3" %>
+        <h5><%= block.content %></h5>
+        
+    <% end %>
+    
+  <% end %>
       
-		</div>
-		
-  </div>
-</div>
+<% end %>
+
+<% content_for :dynamic_stylesheets do %>
+  <%= stylesheet_link_tag "guide_viewer" %>
+<%end%>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_viewer" %>
+<%end%>

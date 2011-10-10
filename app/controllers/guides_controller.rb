@@ -6,7 +6,7 @@ class GuidesController < ApplicationController
   end
   
   def show
-    @guide = Guide.find_by_slug(params['id'])
+    @guide = Guide.find_by_permalink(params['id'])
     
     if not @guide
       redirect_to home_path
@@ -19,6 +19,7 @@ class GuidesController < ApplicationController
   
   def create
     @guide = Guide.new(params[:guide])
+    @guide.user = current_user
     
     if @guide.save
       respond_to do |format|

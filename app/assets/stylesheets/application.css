@@ -1,3 +1,5 @@
+/* @override http://localhost:3000/assets/application.css?body=1 */
+
 /*
 *= require reset
 */
@@ -442,4 +444,33 @@ div.important p, div.caution p, div.warning p, div.note p, div.info p {
   top: 0px;
   z-index: 100;
   border: none;
+}
+
+/* User Profile */
+
+ul#my-guides {
+  margin: 0;
+}
+
+ul#my-guides li {
+  background-image: none;
+  display: block;
+  margin-bottom: 1em;
+  border: 1px solid #c7ced5;
+  padding: 5px 10px;
+  background-color: #effae8;
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(200, 200, 200, 1);
+-moz-box-shadow: 0px 0px 6px 0px rgba(200, 200, 200, 1);
+box-shadow: 0px 0px 6px 0px rgba(200, 200, 200, 1);
+}
+
+ul#my-guides a {
+  font-size: 1.3em;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.3em;
+}
+
+ul#my-guides a:hover {
+  text-decoration: underline;
 }

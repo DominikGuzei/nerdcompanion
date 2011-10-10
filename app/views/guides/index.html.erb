@@ -1,54 +1,42 @@
 
-<div id="feature">
-  <div class="wrapper">
-    
-    <h2>Rails Guides for the Rest of us</h2>
-    <p>Ever noticed how beautiful the Ruby on Rails guides are?<br />
-    	Now its your turn to spread knowledge with style.</p>
-    
-    <ul>
-			<li>Sign in with your Twitter account</li>
-			<li>Create your first guide</li>
-			<li>Share it with the rest of the world</li>
-			<li>Spread the word about NerdCompanion!</li>
-		</ul>
-		
-    <div id="subCol">
-      <h3 class="chapter"><img src="/assets/chapters_icon.gif" alt="" />Chapters</h3>
-      <ol class="chapters">
-        <li><a href="#">You will be suprised</a></li>
-        <li><a href="#">How easy it is</a></li>
-        <li><a href="#">To give your guide structure</a></li>
-        <li><a href="#">With the help of Chapters!</a></li>
-      </ol>
-    </div>
-    
+<% content_for :featured do %>
+  <h2>Rails Guides for the Rest of us</h2>
+  <p>Ever noticed how beautiful the Ruby on Rails guides are?<br />
+  	Now its your turn to spread knowledge with style.</p>
+  
+  <ul>
+		<li>Sign in with your Twitter account</li>
+		<li>Create your first guide</li>
+		<li>Share it with the rest of the world</li>
+		<li>Spread the word about NerdCompanion!</li>
+	</ul>
+	
+  <div id="subCol">
+    <h3 class="chapter"><img src="/assets/chapters_icon.gif" alt="" />Chapters</h3>
+    <ol class="chapters">
+      <li><a href="#">You will be suprised</a></li>
+      <li><a href="#">How easy it is</a></li>
+      <li><a href="#">To give your guide structure</a></li>
+      <li><a href="#">With the help of Chapters!</a></li>
+    </ol>
   </div>
-</div>
+<% end %>
 
-<div id="container">
-  <div class="wrapper">
-    
-    <div id="mainCol">
-      
-      <h3 id="code-example">Code Examples in many languages</h3>
-			<p>NerdCompanion will not only support ruby syntax highlighting but almost all common web languages like Python, Php, Java, ActionScript and many others.</p>
-			
-			<h4>Python Example</h4>
-			<div class="code_container">
-				<pre class="brush: python; gutter: false; toolbar: false">
-				class ExampleClass:
-				  '''Python documentation string'''
-				  
-				  def create(self):
-					  example_var = "value"
-				</pre>
-			</div>
-			
-		</div>
-		
-  </div>
-</div>
+<% content_for :main do %>      
+  <h3 id="code-example">Code Examples in many languages</h3>
+	<p>NerdCompanion will not only support ruby syntax highlighting but almost all common web languages like Python, Php, Java, ActionScript and many others.</p>
+	
+	<h4>Python Example</h4>
+	<div class="code_container">
+		<pre class="brush: python; gutter: false; toolbar: false">
+		class ExampleClass:
+		  '''Python documentation string'''
+		  
+		  def create(self):
+			  example_var = "value"
+		</pre>
+	</div>
+<% end %>
 
 <% content_for :dynamic_stylesheets do %>
   <%= stylesheet_link_tag "guide_viewer" %>
