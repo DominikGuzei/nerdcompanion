@@ -43,3 +43,7 @@ group :test do
   gem "rb-fsevent"
   gem "growl_notify"
 end
+
+group :production do
+  gem "newrelic_rpm"
+end
