@@ -4,7 +4,12 @@
 <% end %>
 
 <% content_for :main do %>
-  <% @user.guides.each do |guide| %>
-    <%= link_to guide.title, guide %>
-  <% end %>
+  <ul id="my-guides">
+    <% @user.guides.each do |guide| %> 
+      <li>
+        <%= link_to guide.title, guide %>
+        <%= guide.description %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

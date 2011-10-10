@@ -1,6 +1,7 @@
 
 <% content_for :featured do %>
-    
+  
+  <p class="author">This guide was written by <%= link_to @guide.user.name, @guide.user %></p>
   <h2 id="guide-title"><%= @guide.title %></h2>
   <p><%= @guide.description %></p>
     
@@ -32,3 +33,11 @@
   <% end %>
       
 <% end %>
+
+<% content_for :dynamic_stylesheets do %>
+  <%= stylesheet_link_tag "guide_viewer" %>
+<%end%>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_viewer" %>
+<%end%>
