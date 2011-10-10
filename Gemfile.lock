@@ -262,7 +262,6 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sproutcore-rails (0.1.0)
     stringex (1.3.0)
     systemu (2.2.0)
     term-ansicolor (1.0.6)
@@ -314,7 +313,6 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   sass-rails (~> 3.1.0)
-  sproutcore-rails
   thin
   thor
   uglifier

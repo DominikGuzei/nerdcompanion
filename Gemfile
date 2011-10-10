@@ -15,7 +15,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem "sproutcore-rails"
 
 gem "bson_ext"
 gem "mongoid"
