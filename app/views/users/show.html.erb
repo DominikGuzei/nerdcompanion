@@ -1,4 +1,10 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+
+<% content_for :featured do %>
+  <h2><%= @user.name %>'s Guides</h2>
+<% end %>
+
+<% content_for :main do %>
+  <% @user.guides.each do |guide| %>
+    <%= link_to guide.title, guide %>
+  <% end %>
+<% end %>
