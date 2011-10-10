@@ -167,7 +167,7 @@ function sendGuideDataToServer( guide ) {
     }),
     contentType: "application/json",
     success: function(guide) {
-      window.location = "/guides/" + guide.slug;
+      window.location = "/guides/" + guide.permalink;
     }
   });
   
