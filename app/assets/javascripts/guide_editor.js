@@ -98,6 +98,17 @@ function addParagraphToGuide( paragraph ) {
   
   editor.focus();
   
+  $(editor.doc).scroll(function onEditorScroll(event) {
+    var bodyHeight = $(this).find('body').outerHeight() + 20;
+    var toolbarHeight = editor.$toolbar.outerHeight();
+    
+    var newHeight = bodyHeight + toolbarHeight;
+    
+    editor.$main.closest('li.paragraph').height( newHeight );
+    editor.$frame.height( bodyHeight );
+  });
+  
+  editor.$frame.attr('scrolling', 'no');
 }
 
 function addHeading1ToGuide( heading ) {
