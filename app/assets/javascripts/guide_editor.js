@@ -97,18 +97,22 @@ function addParagraphToGuide( paragraph ) {
   })[0];
   
   editor.focus();
-  
-  $(editor.doc).scroll(function onEditorScroll(event) {
-    var bodyHeight = $(this).find('body').outerHeight() + 20;
-    var toolbarHeight = editor.$toolbar.outerHeight();
-    
-    var newHeight = bodyHeight + toolbarHeight;
-    
-    editor.$main.closest('li.paragraph').height( newHeight );
-    editor.$frame.height( bodyHeight );
-  });
+  editor.change( function() { resizeParagraphEditor( $(this)[0] ); } );
+  $(editor.doc).scroll( function() { resizeParagraphEditor(editor); });
   
   editor.$frame.attr('scrolling', 'no');
+}
+
+function resizeParagraphEditor( editor ) {
+  
+  var bodyHeight = $(editor.doc).find('body').outerHeight() + 20;
+  var toolbarHeight = editor.$toolbar.outerHeight();
+  
+  var newHeight = bodyHeight + toolbarHeight;
+  
+  editor.$main.closest('li.paragraph').height( newHeight );
+  editor.$frame.height( bodyHeight );
+  
 }
 
 function addHeading1ToGuide( heading ) {
