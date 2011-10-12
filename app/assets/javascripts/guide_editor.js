@@ -1,5 +1,4 @@
 
-//= require lib/jqueryui
 //= require lib/cleditor/jquery_cleditor
 //= require lib/cleditor/jquery_cleditor_xhtml
 
