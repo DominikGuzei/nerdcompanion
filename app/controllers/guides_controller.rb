@@ -28,6 +28,14 @@ class GuidesController < ApplicationController
     end
   end
  
+  def edit
+    @guide = Guide.find_by_permalink(params['id'])
+    
+    if not @guide
+      redirect_to home_path
+    end
+  end
+ 
   private
  
   def require_login

@@ -1,0 +1,47 @@
+
+
+<%= form_for @guide do |f| %>
+
+  <% content_for :featured do %>
+  
+    <h2>Create new Guide</h2>
+    <%= f.label :title, 'Title:' %>
+    <%= f.text_field :title, :id => 'guide-title' %>
+    <%= f.label :description, 'Description:' %>
+    <%= f.text_area :description, :id => 'guide-description' %>
+    
+  <% end %>
+  
+  <% content_for :main do %>
+  
+    <h3>Guide Text Blocks</h3>
+    <p>Drag and Drop Text Elements from the toolbox (bottom) to this area<p>
+    
+    <ul id="guide-content-list">
+      <% @guide.blocks.each do |block| %>
+        <li class="tool <%= block.type %> ui-draggable in-guide" style="display: list-item; ">
+          <%= block.content %>
+        </li>
+      <% end %>
+    </ul>
+    
+    <%= f.submit "Save", :id => 'guide-submit' %>
+    
+    <ul id="guide-toolbox-list">
+      <li class="tool h1">Heading 1</li>
+      <li class="tool h2">Heading 2</li>
+      <li class="tool h3">Heading 3</li>
+      <li class="tool paragraph">Paragraph</li>
+    </ul>
+    
+  <% end %>
+
+<% end %>
+
+<% content_for :dynamic_stylesheets do %>
+  <%= stylesheet_link_tag "guide_editor" %>
+<%end%>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_editor" %>
+<%end%>
