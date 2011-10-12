@@ -35,6 +35,21 @@ class GuidesController < ApplicationController
       redirect_to home_path
     end
   end
+  
+  def update
+    @guide = Guide.find_by_permalink(params['id'])
+    
+    if not @guide
+      redirect_to home_path
+    end
+    
+    if @guide.update_attributes(params[:guide])
+      respond_to do |format|
+        format.json { render :json => @guide.to_json }
+      end
+    end
+    
+  end
  
   private
  

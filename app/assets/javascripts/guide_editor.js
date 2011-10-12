@@ -15,7 +15,24 @@ $(function() {
 	});
 
 	$("#guide-toolbox-list, #guide-content-list").disableSelection();
+	
+	setupExistingBlocks();
 });
+
+function setupExistingBlocks() {
+  var guideList = $("#guide-content-list");
+  
+  guideList.find('li.tool').each(function() {
+    var item = $(this);
+    
+    if(item.hasClass('h1') || item.hasClass('h2') || item.hasClass('h3')) {
+      addHeadingToGuide( item, item.html().trim() );
+    }
+    else if(item.hasClass('paragraph')) {
+      addParagraphToGuide( item, item.html() );
+    }
+  });
+}
 
 $("#guide-content-list").bind("sortstart", function(event, ui) {
   
@@ -43,14 +60,8 @@ function addBlockToGuide( block ) {
   if(block.hasClass('paragraph')) {
     addParagraphToGuide( block );
   }
-  else if(block.hasClass('h1')) {
-    addHeading1ToGuide( block );
-  }
-  else if(block.hasClass('h2')) {
-    addHeading2ToGuide( block );
-  }
-  else if(block.hasClass('h3')) {
-    addHeading3ToGuide( block );
+  else if(block.hasClass('h1') || block.hasClass('h2') || block.hasClass('h3')) {
+    addHeadingToGuide( block );
   }
   
   // add class to mark this tool as inserted
@@ -82,9 +93,12 @@ function updateBlockAfterSort( block ) {
   
 }
 
-function addParagraphToGuide( paragraph ) {
+function addParagraphToGuide( paragraph, content ) {
+  
+  content = content || ""
+  
   // paragraphs are based on textarea
-  paragraph.html("<textarea>");
+  paragraph.html("<textarea>" + content + "</textarea>");
   
   // initialize CLEditor instance with created textarea
   var editor = paragraph.find('textarea').cleditor({
@@ -115,19 +129,22 @@ function resizeParagraphEditor( editor ) {
   
 }
 
-function addHeading1ToGuide( heading ) {
+function addHeadingToGuide( heading, content ) {
+  content = content || "";
+  var preText = "";
+  
+  if(heading.hasClass('h1')) {
+    preText = "<h3>H1</h3>";
+  }
+  else if(heading.hasClass('h2')) {
+    preText = "<h4>H2</h4>";
+  }
+  else if(heading.hasClass('h3')) {
+    preText = "<h5>H3</h5>";
+  }
+  
   // headings are based on text fields
-  heading.html('<h3>H1</h3><input type="text">');
-}
-
-function addHeading2ToGuide( heading ) {
-  // headings are based on text fields
-  heading.html('<h4>H2</h4><input type="text">');
-}
-
-function addHeading3ToGuide( heading ) {
-  // headings are based on text fields
-  heading.html('<h5>H3</h5><input type="text">');
+  heading.html( preText + '<input type="text" value="' + content + '">');
 }
 
 $('#guide-submit').click(function(event) {
@@ -175,8 +192,11 @@ $('#guide-submit').click(function(event) {
 
 function sendGuideDataToServer( guide ) {
   
-  $.ajax('/guides', {
-    type: 'POST',
+  var url = $('#guide-submit').attr('data-url');
+  var action = $('#guide-submit').attr('data-action');
+  
+  $.ajax(url, {
+    type: action,
     data: JSON.stringify({
       guide: guide
     }),

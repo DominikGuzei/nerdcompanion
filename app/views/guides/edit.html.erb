@@ -2,6 +2,8 @@
 <%= render :partial => "shared/guide_editor", 
            :locals => { 
              :guide => @guide,
-             :headline => "Edit Guide"
+             :headline => "Edit Guide",
+             :url => guide_path(@guide.permalink),
+             :action => 'PUT'
            } 
 %>
