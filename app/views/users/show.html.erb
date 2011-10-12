@@ -7,8 +7,9 @@
   <ul id="my-guides">
     <% @user.guides.each do |guide| %> 
       <li>
-        <%= link_to guide.title, guide %>
+        <%= link_to guide.title, guide, :class => 'show' %>
         <%= guide.description %>
+        <%= link_to "Edit", edit_guide_path(guide), :class => "edit" %>
       </li>
     <% end %>
   </ul>

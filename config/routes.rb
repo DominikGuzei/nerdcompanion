@@ -2,8 +2,8 @@ NerdCompanion::Application.routes.draw do
 
   root :to => "guides#index", :as => :home
 
-  resources :users, :only => [ :show, :edit, :update ]
-  resources :guides, :only => [ :index, :show, :new, :create ]
+  resources :users, :only => [ :show ]
+  resources :guides, :only => [ :index, :show, :new, :create, :edit, :update ]
 
   match '/auth/:provider/callback' => 'sessions#create'
 
