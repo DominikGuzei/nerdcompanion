@@ -469,8 +469,15 @@ ul#my-guides a {
   text-decoration: none;
   display: block;
   margin-bottom: 0.3em;
+  color: #2474c5;
 }
 
 ul#my-guides a:hover {
   text-decoration: underline;
+}
+
+#my-guides a.edit {
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 1em;
 }
