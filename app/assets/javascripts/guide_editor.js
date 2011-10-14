@@ -24,11 +24,20 @@ function setupExistingBlocks() {
   guideList.find('li.tool').each(function() {
     var item = $(this);
     
-    if(item.hasClass('h1') || item.hasClass('h2') || item.hasClass('h3')) {
-      addHeadingToGuide( item, item.html().trim() );
-    }
-    else if(item.hasClass('paragraph')) {
-      addParagraphToGuide( item, item.html() );
+    switch( item.attr('data-block') ) {
+    
+      case "paragraph":
+        addParagraphToGuide( item, item.html() );
+        break;
+      
+      case "h1":
+      case "h2":
+      case "h3":
+        addHeadingToGuide( item, item.html().trim() );
+        break;
+      
+      case "code":
+        addCodeToGuide( item, item.html() );
     }
   });
 }
@@ -56,11 +65,21 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
 
 function addBlockToGuide( block ) {
   
-  if(block.hasClass('paragraph')) {
-    addParagraphToGuide( block );
-  }
-  else if(block.hasClass('h1') || block.hasClass('h2') || block.hasClass('h3')) {
-    addHeadingToGuide( block );
+  switch( block.attr('data-block') ) {
+    
+    case "paragraph":
+      addParagraphToGuide( block );
+      break;
+    
+    case "h1":
+    case "h2":
+    case "h3":
+      addHeadingToGuide( block );
+      break;
+    
+    case "code":
+      addCodeToGuide( block );
+    
   }
   
   // add class to mark this tool as inserted
@@ -146,6 +165,71 @@ function addHeadingToGuide( heading, content ) {
   heading.html( preText + '<input type="text" value="' + content + '">');
 }
 
+function addCodeToGuide( codeBlock, content ) {
+  
+  content = content || ""
+  
+  var modeFromDom = codeBlock.attr('data-meta');
+  
+  // create select for CodeMirror modes
+  var html = '<div class="language-select">Language:';
+  html += '<select class="editor-mode">';
+  html += '<option value="javascript">JavaScript</option>';
+  html += '<option value="ruby">Ruby</option>';
+  html += '<option value="text/html">HTML</option>';
+  html += '<option value="text/css">CSS</option>';
+  html += '<option value="text/x-clojure">Clojure</option>';
+  html += '<option value="text/x-coffeescript">CoffeeScript</option>';
+  html += '<option value="text/x-haskell">Haskell</option>';
+  html += '<option value="text/x-lua">Lua</option>';
+  html += '<option value="text/x-markdown">Markdown</option>';
+  html += '<option value="text/x-perl">Perl</option>';
+  html += '<option value="text/x-php">PHP</option>';
+  html += '<option value="application/x-httpd-php">PHP in HTML</option>';
+  html += '<option value="text/x-python">Python</option>';
+  html += '<option value="text/x-scheme">Scheme</option>';
+  html += '<option value="application/xml">XML</option>';
+  html += '<option value="text/x-yaml">YAML</option>';
+  html += '<option value="text/x-csrc">C</option>';
+  html += '<option value="text/x-c++src">C++</option>';
+  html += '<option value="text/x-java">Java</option>';
+  html += '<option value="text/x-groovy">Groovy</option>';
+  html += '</select></div>';
+  
+  // add the content of editor as textarea
+  html += '<textarea></textarea>';
+  
+  // insert html into dom
+  codeBlock.html(html);
+  
+  codeBlock.find('select').val(modeFromDom);
+  
+  var editor = CodeMirror.fromTextArea(codeBlock.find('textarea')[0], {
+    mode: modeFromDom,
+    theme: 'elegant',
+    lineNumbers: true,
+    matchBrackets: true,
+    tabMode: 'indent',
+    onBlur: function() { editor.save(); } // push contents to textarea 
+  });
+  
+  editor.focus();
+  editor.setValue( $.trim(content) );
+  
+  // change CodeMirror mode on selection change
+  codeBlock.find('select.editor-mode').change(function(event) {
+    editor.setOption( "mode", $(this).val() );
+    editor.focus();
+  });
+  
+  // stop mouse down events from bubbling up to sortable
+  // so the user can select the source code within the editor
+  codeBlock.find('.CodeMirror-scroll').mousedown(function(event) {
+    event.stopPropagation();
+  });
+  
+}
+
 $('#guide-submit').click(function(event) {
   event.preventDefault();
   
@@ -161,24 +245,35 @@ $('#guide-submit').click(function(event) {
     
     var block = {};
     
-    if($(this).hasClass('paragraph')) {
-      block.type = "paragraph";
-      var textarea = $(this).find('textarea');
+    switch( $(this).attr('data-block') ) {
       
-      //textarea.cleditor()[0].updateTextArea();
-      block.content = textarea.val();
-    }
-    else if($(this).hasClass('h1')) {
-      block.type = "h1";
-      block.content = $(this).find('input').val();
-    }
-    else if($(this).hasClass('h2')) {
-      block.type = "h2";
-      block.content = $(this).find('input').val();
-    }
-    else if($(this).hasClass('h3')) {
-      block.type = "h3";
-      block.content = $(this).find('input').val();
+      case "paragraph":
+        block.type = "paragraph";
+        var textarea = $(this).find('textarea');
+        
+        //textarea.cleditor()[0].updateTextArea();
+        block.content = textarea.val().trim();
+        break;
+      
+      case "h1":
+        block.type = "h1";
+        block.content = $(this).find('input').val();
+        break;
+      
+      case "h2":
+        block.type = "h2";
+        block.content = $(this).find('input').val();
+        break;
+      
+      case "h3":
+        block.type = "h3";
+        block.content = $(this).find('input').val();
+        break;
+        
+      case "code":
+        block.type = "code";
+        block.content = $(this).find('textarea').val().trim();
+        block.meta = $(this).find('select').val();
     }
    
     guide.blocks.push( block );

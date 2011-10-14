@@ -2,6 +2,7 @@
 
 /*
 *= require reset
+*= require_tree ./codemirror
 */
 
 .left {float: left; margin-right: 1em;}
@@ -46,6 +47,10 @@ input.text, input.title,
 textarea, select {
   margin:0.5em 0;
   border:1px solid #bbb;
+}
+
+.hidden {
+  display: none;
 }
 
 table {
@@ -356,12 +361,13 @@ h6 {
   font-weight: normal;
 }
 
-div.code_container {
+pre.code_container {
   background: #EEE url(/assets/tab_grey.gif) no-repeat left top;
-  padding: 0.25em 1em 0.5em 48px;
+  padding: 1em 1em 1em 48px;
+  font-size: 0.9em;
 }
 
-div.code_container div.filename {
+div.filename {
   font-family: monospace;
   color: #666;
   border-bottom: 1px solid #ccc;
@@ -425,7 +431,7 @@ div.code_container div.filename {
 
 /* Same bottom margin for special boxes than for regular paragraphs, this way
 intermediate whitespace looks uniform. */
-div.code_container, div.important, div.caution, div.warning, div.note, div.info {
+pre.code_container, div.important, div.caution, div.warning, div.note, div.info {
     margin-bottom: 1.5em;
 }
 
@@ -480,4 +486,9 @@ ul#my-guides a:hover {
   font-size: 0.9em;
   color: #999;
   margin-top: 1em;
+}
+
+#feature p.author {
+  font-size: 1em;
+  margin-top: 0.5em;
 }

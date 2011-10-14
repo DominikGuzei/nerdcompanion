@@ -139,3 +139,47 @@ h2 {
   color: #1c5ec3;
   background-color: #c8fffb;
 }
+
+/* CODEMIRROR EDITOR */
+.in-guide.tool.code {
+  min-height: 100px;
+}
+
+.in-guide.tool.code .language-select {
+  margin-left: 50px;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  width: 557px;
+  padding-left: 10px;
+  background-color: #dedede;
+  cursor: move;
+}
+
+.in-guide.tool.code select {
+  margin-left: 10px;
+}
+
+.CodeMirror {
+  margin-left: 50px;
+  border: 1px solid #ccc;
+  width: 567px;
+  background-color: #fff;
+  font-size: 1.05em;
+}
+
+.CodeMirror-scroll {
+  height: auto;
+  min-height: 100px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%
+}
+
+.CodeMirror-gutter {
+  background-color: #efefef;
+}
+
+.CodeMirror-lines {
+  margin-left: 0.5em;
+}

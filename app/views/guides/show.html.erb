@@ -31,15 +31,16 @@
       <% when "h3" %>
         <h5><%= block.content %></h5>
         
+      <% when "code" %>
+        <pre class="code_container" data-meta="<%= block.meta %>">
+          <textarea class="hidden"><%=raw block.content %></textarea>
+        </pre>
+        
     <% end %>
     
   <% end %>
       
 <% end %>
-
-<% content_for :dynamic_stylesheets do %>
-  <%= stylesheet_link_tag "guide_viewer" %>
-<%end%>
 
 <% content_for :dynamic_javascripts do %>
   <%= javascript_include_tag "guide_viewer" %>
