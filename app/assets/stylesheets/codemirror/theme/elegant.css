@@ -1,42 +1,42 @@
 /* @override http://localhost:3000/assets/codemirror/theme/elegant.css?body=1 */
 
-.cm-s-elegant span.cm-number, .cm-s-elegant span.cm-string {
+span.cm-number, span.cm-string {
   color: #5f8659;
 }
-.cm-s-elegant span.cm-atom {
+span.cm-atom {
   color: #5f8659;
 }
-.cm-s-elegant span.cm-tag {
+span.cm-tag {
 	color: #5f8659;
 }
-.cm-s-elegant span.cm-comment {
+span.cm-comment {
 	color: #adafab;font-style: italic;
 }
-.cm-s-elegant span.cm-meta {
+span.cm-meta {
 	color: #555;font-style: italic;
 }
-.cm-s-elegant span.cm-variable {
+span.cm-variable {
 	color: black;
 }
-.cm-s-elegant span.cm-variable-2 {
+span.cm-variable-2 {
 	color: #b11;
 }
-.cm-s-elegant span.cm-qualifier {
+span.cm-qualifier {
 	color: #555;
 }
-.cm-s-elegant span.cm-keyword {
+span.cm-keyword {
 	color: #884402;
 }
-.cm-s-elegant span.cm-property {
+span.cm-property {
 	color: #3c6798;
 }
-.cm-s-elegant span.cm-builtin {
+span.cm-builtin {
 	color: #30a;
 }
-.cm-s-elegant span.cm-error {
+span.cm-error {
 	background-color: #fdd;
 }
-.cm-s-elegant span.cm-def {
+span.cm-def {
 	color: #464947;
 	font-weight: bold;
 }

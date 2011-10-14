@@ -1,7 +1,6 @@
 
 //= require lib/cleditor/jquery_cleditor
 //= require lib/cleditor/jquery_cleditor_xhtml
-//= require_tree ./lib/codemirror
 
 $(function() {
 	$("#guide-toolbox-list .tool").draggable({
@@ -170,7 +169,7 @@ function addCodeToGuide( codeBlock, content ) {
   
   content = content || ""
   
-  var modeFromDom = codeBlock.attr('data-mode');
+  var modeFromDom = codeBlock.attr('data-meta');
   
   // create select for CodeMirror modes
   var html = '<div class="language-select">Language:';
@@ -198,10 +197,12 @@ function addCodeToGuide( codeBlock, content ) {
   html += '</select></div>';
   
   // add the content of editor as textarea
-  html += '<textarea>' + content + '</textarea>';
+  html += '<textarea></textarea>';
   
-  // paragraphs are based on textarea
+  // insert html into dom
   codeBlock.html(html);
+  
+  codeBlock.find('select').val(modeFromDom);
   
   var editor = CodeMirror.fromTextArea(codeBlock.find('textarea')[0], {
     mode: modeFromDom,
@@ -213,6 +214,7 @@ function addCodeToGuide( codeBlock, content ) {
   });
   
   editor.focus();
+  editor.setValue( $.trim(content) );
   
   // change CodeMirror mode on selection change
   codeBlock.find('select.editor-mode').change(function(event) {
@@ -250,7 +252,7 @@ $('#guide-submit').click(function(event) {
         var textarea = $(this).find('textarea');
         
         //textarea.cleditor()[0].updateTextArea();
-        block.content = textarea.val();
+        block.content = textarea.val().trim();
         break;
       
       case "h1":
@@ -270,7 +272,8 @@ $('#guide-submit').click(function(event) {
         
       case "code":
         block.type = "code";
-        block.content = $(this).find('textarea').val();
+        block.content = $(this).find('textarea').val().trim();
+        block.meta = $(this).find('select').val();
     }
    
     guide.blocks.push( block );
