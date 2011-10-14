@@ -1,6 +1,7 @@
 
 //= require lib/cleditor/jquery_cleditor
 //= require lib/cleditor/jquery_cleditor_xhtml
+//= require_tree ./lib/codemirror
 
 $(function() {
 	$("#guide-toolbox-list .tool").draggable({
@@ -61,6 +62,9 @@ function addBlockToGuide( block ) {
   }
   else if(block.hasClass('h1') || block.hasClass('h2') || block.hasClass('h3')) {
     addHeadingToGuide( block );
+  }
+  else if(block.hasClass('code')) {
+    addCodeToGuide( block );
   }
   
   // add class to mark this tool as inserted
@@ -144,6 +148,67 @@ function addHeadingToGuide( heading, content ) {
   
   // headings are based on text fields
   heading.html( preText + '<input type="text" value="' + content + '">');
+}
+
+function addCodeToGuide( codeBlock, content ) {
+  
+  content = content || ""
+  
+  var modeFromDom = codeBlock.attr('data-mode');
+  
+  // create select for CodeMirror modes
+  var html = '<div class="language-select">Language:';
+  html += '<select class="editor-mode">';
+  html += '<option value="javascript">JavaScript</option>';
+  html += '<option value="ruby">Ruby</option>';
+  html += '<option value="text/html">HTML</option>';
+  html += '<option value="text/css">CSS</option>';
+  html += '<option value="text/x-clojure">Clojure</option>';
+  html += '<option value="text/x-coffeescript">CoffeeScript</option>';
+  html += '<option value="text/x-haskell">Haskell</option>';
+  html += '<option value="text/x-lua">Lua</option>';
+  html += '<option value="text/x-markdown">Markdown</option>';
+  html += '<option value="text/x-perl">Perl</option>';
+  html += '<option value="text/x-php">PHP</option>';
+  html += '<option value="application/x-httpd-php">PHP in HTML</option>';
+  html += '<option value="text/x-python">Python</option>';
+  html += '<option value="text/x-scheme">Scheme</option>';
+  html += '<option value="application/xml">XML</option>';
+  html += '<option value="text/x-yaml">YAML</option>';
+  html += '<option value="text/x-csrc">C</option>';
+  html += '<option value="text/x-c++src">C++</option>';
+  html += '<option value="text/x-java">Java</option>';
+  html += '<option value="text/x-groovy">Groovy</option>';
+  html += '</select></div>';
+  
+  // add the content of editor as textarea
+  html += '<textarea>' + content + '</textarea>';
+  
+  // paragraphs are based on textarea
+  codeBlock.html(html);
+  
+  var editor = CodeMirror.fromTextArea(codeBlock.find('textarea')[0], {
+    mode: modeFromDom,
+    theme: 'elegant',
+    lineNumbers: true,
+    matchBrackets: true,
+    tabMode: 'indent'
+  });
+  
+  editor.focus();
+  
+  // change CodeMirror mode on selection change
+  codeBlock.find('select.editor-mode').change(function(event) {
+    editor.setOption( "mode", $(this).val() );
+    editor.focus();
+  });
+  
+  // stop mouse down events from bubbling up to sortable
+  // so the user can select the source code within the editor
+  codeBlock.find('.CodeMirror-scroll').mousedown(function(event) {
+    event.stopPropagation();
+  });
+  
 }
 
 $('#guide-submit').click(function(event) {
