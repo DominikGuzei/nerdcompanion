@@ -25,11 +25,20 @@ function setupExistingBlocks() {
   guideList.find('li.tool').each(function() {
     var item = $(this);
     
-    if(item.hasClass('h1') || item.hasClass('h2') || item.hasClass('h3')) {
-      addHeadingToGuide( item, item.html().trim() );
-    }
-    else if(item.hasClass('paragraph')) {
-      addParagraphToGuide( item, item.html() );
+    switch( item.attr('data-block') ) {
+    
+      case "paragraph":
+        addParagraphToGuide( item, item.html() );
+        break;
+      
+      case "h1":
+      case "h2":
+      case "h3":
+        addHeadingToGuide( item, item.html().trim() );
+        break;
+      
+      case "code":
+        addCodeToGuide( item, item.html() );
     }
   });
 }
@@ -57,14 +66,21 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
 
 function addBlockToGuide( block ) {
   
-  if(block.hasClass('paragraph')) {
-    addParagraphToGuide( block );
-  }
-  else if(block.hasClass('h1') || block.hasClass('h2') || block.hasClass('h3')) {
-    addHeadingToGuide( block );
-  }
-  else if(block.hasClass('code')) {
-    addCodeToGuide( block );
+  switch( block.attr('data-block') ) {
+    
+    case "paragraph":
+      addParagraphToGuide( block );
+      break;
+    
+    case "h1":
+    case "h2":
+    case "h3":
+      addHeadingToGuide( block );
+      break;
+    
+    case "code":
+      addCodeToGuide( block );
+    
   }
   
   // add class to mark this tool as inserted
@@ -192,7 +208,8 @@ function addCodeToGuide( codeBlock, content ) {
     theme: 'elegant',
     lineNumbers: true,
     matchBrackets: true,
-    tabMode: 'indent'
+    tabMode: 'indent',
+    onBlur: function() { editor.save(); } // push contents to textarea 
   });
   
   editor.focus();
@@ -226,24 +243,34 @@ $('#guide-submit').click(function(event) {
     
     var block = {};
     
-    if($(this).hasClass('paragraph')) {
-      block.type = "paragraph";
-      var textarea = $(this).find('textarea');
+    switch( $(this).attr('data-block') ) {
       
-      //textarea.cleditor()[0].updateTextArea();
-      block.content = textarea.val();
-    }
-    else if($(this).hasClass('h1')) {
-      block.type = "h1";
-      block.content = $(this).find('input').val();
-    }
-    else if($(this).hasClass('h2')) {
-      block.type = "h2";
-      block.content = $(this).find('input').val();
-    }
-    else if($(this).hasClass('h3')) {
-      block.type = "h3";
-      block.content = $(this).find('input').val();
+      case "paragraph":
+        block.type = "paragraph";
+        var textarea = $(this).find('textarea');
+        
+        //textarea.cleditor()[0].updateTextArea();
+        block.content = textarea.val();
+        break;
+      
+      case "h1":
+        block.type = "h1";
+        block.content = $(this).find('input').val();
+        break;
+      
+      case "h2":
+        block.type = "h2";
+        block.content = $(this).find('input').val();
+        break;
+      
+      case "h3":
+        block.type = "h3";
+        block.content = $(this).find('input').val();
+        break;
+        
+      case "code":
+        block.type = "code";
+        block.content = $(this).find('textarea').val();
     }
    
     guide.blocks.push( block );

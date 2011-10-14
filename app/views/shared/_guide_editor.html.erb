@@ -16,7 +16,7 @@
   
   <ul id="guide-content-list">
     <% guide.blocks.each do |block| %>
-      <li class="tool <%= block.type %> ui-draggable in-guide" style="display: list-item; ">
+      <li class="tool ui-draggable in-guide" data-block="<%= block.type %>" style="display: list-item; ">
         <%= block.content %>
       </li>
     <% end %>
@@ -25,11 +25,11 @@
   <input type="button" id="guide-submit" data-url="<%= url %>" data-action="<%= action %>" value="Save">
   
   <ul id="guide-toolbox-list">
-    <li class="tool h1">Heading 1</li>
-    <li class="tool h2">Heading 2</li>
-    <li class="tool h3">Heading 3</li>
-    <li class="tool paragraph">Paragraph</li>
-    <li class="tool code" data-mode="javascript">Source Code</li>
+    <li class="tool h1" data-block="h1">Heading 1</li>
+    <li class="tool h2" data-block="h2">Heading 2</li>
+    <li class="tool h3" data-block="h3">Heading 3</li>
+    <li class="tool paragraph" data-block="paragraph">Paragraph</li>
+    <li class="tool code" data-block="code" data-mode="javascript">Source Code</li>
   </ul>
   
 <% end %>
