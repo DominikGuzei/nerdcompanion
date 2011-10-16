@@ -8,9 +8,11 @@ class Guide
   
   field :description, :type => String
   
+  embeds_many :goals
   embeds_many :blocks
+  
   belongs_to :user
   
-  attr_accessible :title, :description, :blocks
+  attr_accessible :title, :description, :blocks, :goals
   validates_presence_of :title, :description
 end

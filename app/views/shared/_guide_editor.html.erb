@@ -7,6 +7,27 @@
   <label>Description:</label>
   <textarea id="guide-description"><%= guide.description %></textarea>
   
+  <label>Guide Goals</label>
+  <p>After reading this guide the reader will:</p>
+  
+  <ul id="guide-goals">
+    <% guide.goals.each do |goal| %>
+    <li>
+      <span class="content"><%= goal.content %></span>
+      <span class="delete">delete</span>
+    </li>
+    <% end %>
+    
+    <% if guide.goals.empty? %>
+    <li>
+      <span class="content">Know how awesome NerdCompanion is (click to edit)</span>
+      <span class="delete">delete</span>
+    </li>
+    <% end %>
+  </ul>
+  
+  <input id="add-guide-goal" type="button" value="add goal" />
+  
 <% end %>
 
 <% content_for :main do %>
