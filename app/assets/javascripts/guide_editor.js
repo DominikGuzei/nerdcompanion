@@ -257,7 +257,7 @@ $('li input', '#guide-goals').live('blur keyup', function(event) {
     event.preventDefault();
     $(this).closest('.content').html( $(this).val() );
     
-  } else if(event.type == 'blur') {
+  } else if(event.type == 'focusout') {
     $(this).closest('.content').html( $(this).val() );
   }
   
