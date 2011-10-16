@@ -235,6 +235,31 @@ function addCodeToGuide( codeBlock, content, isNew ) {
   });
 }
 
+/* GUIDE GOALS */
+$('#guide-goals li').live('click', function() {
+  $(this).html('<input type="text" value="' + $(this).html() + '" />');
+  var input = $(this).find('input');
+  
+  input.focus();
+  input.select();
+  
+  input.blur(function() {
+    inputToNormal( $(this) );
+  });
+  
+  input.keyup(function(event) {
+    if (event.keyCode == '13') { 
+      event.preventDefault();
+      inputToNormal( $(this) );
+    }
+  });
+  
+  function inputToNormal( input ) {
+    input.closest('li').html( input.val() );
+  }
+});
+
+
 $('#guide-submit').click(function(event) {
   event.preventDefault();
   
