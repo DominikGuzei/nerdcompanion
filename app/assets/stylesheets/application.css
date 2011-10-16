@@ -482,13 +482,36 @@ ul#my-guides a:hover {
   text-decoration: underline;
 }
 
-#my-guides a.edit {
+#my-guides p {
+  margin-bottom: 0.5em;
+}
+
+#my-guides a.edit, #my-guides a.delete {
   font-size: 0.9em;
   color: #999;
-  margin-top: 1em;
+  float: left;
+  margin-right: 1em;
 }
 
 #feature p.author {
   font-size: 1em;
   margin-top: 0.5em;
+}
+
+#feature a {
+  text-decoration: none;
+}
+
+#feature a:hover {
+  text-decoration: underline;
+}
+
+#feature a.delete {
+	margin-left: 0.5em;
+}
+
+#guide-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

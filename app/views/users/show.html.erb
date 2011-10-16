@@ -6,10 +6,11 @@
 <% content_for :main do %>
   <ul id="my-guides">
     <% @user.guides.each do |guide| %> 
-      <li>
+      <li class="clearfix">
         <%= link_to guide.title, guide, :class => 'show' %>
-        <%= guide.description %>
+        <p><%= guide.description %></p>
         <%= link_to "Edit", edit_guide_path(guide), :class => "edit" %>
+        <%= link_to "Delete", guide_path(guide), :class => "delete", :method => :delete %>
       </li>
     <% end %>
   </ul>
