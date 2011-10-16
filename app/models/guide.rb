@@ -15,4 +15,6 @@ class Guide
   
   attr_accessible :title, :description, :blocks, :goals
   validates_presence_of :title, :description
+  
+  paginates_per 5
 end
