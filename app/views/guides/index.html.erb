@@ -22,20 +22,13 @@
   </div>
 <% end %>
 
-<% content_for :main do %>      
-  <h3 id="code-example">Code Examples in many languages</h3>
-	<p>NerdCompanion will not only support ruby syntax highlighting but almost all common web languages like Python, Php, Java, ActionScript and many others.</p>
-	
-	<h4>Python Example</h4>
-	<div class="code_container">
-		<pre class="brush: python; gutter: false; toolbar: false">
-		class ExampleClass:
-		  '''Python documentation string'''
-		  
-		  def create(self):
-			  example_var = "value"
-		</pre>
-	</div>
+<% content_for :main do %>
+  
+  <h3>Newest Guides:</h3>
+ 
+  <%= render :partial => "shared/guide_list", :locals => { :guides => @guides } %>
+  
+  <%= paginate @guides %>
 <% end %>
 
 <% content_for :dynamic_javascripts do %>

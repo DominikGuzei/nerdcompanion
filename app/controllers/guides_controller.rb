@@ -3,6 +3,7 @@ class GuidesController < ApplicationController
   before_filter :require_login, :only => ['new', 'create', 'edit', 'update', 'delete']
   
   def index
+    @guides = Guide.order_by(:created_at.desc).page(params['page'] || 1)
   end
   
   def show

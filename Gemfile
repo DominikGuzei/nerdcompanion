@@ -21,6 +21,7 @@ gem "mongoid"
 gem 'mongoid_slug'
 gem "omniauth"
 gem "frontend-helpers"
+gem 'kaminari'
 
 group :development do
   gem "thor"
