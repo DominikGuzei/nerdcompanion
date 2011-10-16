@@ -115,7 +115,7 @@ function addParagraphToGuide( paragraph, content, isNew ) {
   var editor = paragraph.find('textarea').cleditor({
     width: "100%",
     height: "100%",
-    controls: "bold italic | bullets numbering",
+    controls: "bold italic | bullets numbering | link unlink",
     useCSS: true,
     docCSSFile: "/assets/guide_editor_doc.css",
     bodyStyle: ""
