@@ -20,7 +20,7 @@
           data-block="<%= block.type %>" 
           data-meta="<%= block.meta %>" style="display: list-item; ">
         
-        <%= block.content %>
+        <textarea><%=raw block.content %></textarea>
       </li>
     <% end %>
   </ul>

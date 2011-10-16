@@ -22,23 +22,7 @@ function setupExistingBlocks() {
   var guideList = $("#guide-content-list");
   
   guideList.find('li.tool').each(function() {
-    var item = $(this);
-    
-    switch( item.attr('data-block') ) {
-    
-      case "paragraph":
-        addParagraphToGuide( item, item.html() );
-        break;
-      
-      case "h1":
-      case "h2":
-      case "h3":
-        addHeadingToGuide( item, item.html().trim() );
-        break;
-      
-      case "code":
-        addCodeToGuide( item, item.html() );
-    }
+    addBlockToGuide($(this), $(this).find('textarea').val().trim(), false );
   });
 }
 
@@ -57,30 +41,39 @@ $("#guide-content-list").bind("sortstop", function(event, ui) {
   // everything else is just sorting
   
   if(!ui.item.hasClass('in-guide')) {
-    addBlockToGuide(ui.item);
+    addBlockToGuide(ui.item, "", true);
   } else {
     updateBlockAfterSort( ui.item );
   }
 });
 
-function addBlockToGuide( block ) {
+function addBlockToGuide( block, content, isNew ) {
+  
+  content = content || "";
   
   switch( block.attr('data-block') ) {
     
     case "paragraph":
-      addParagraphToGuide( block );
+      addParagraphToGuide( block, content, isNew );
       break;
     
     case "h1":
     case "h2":
     case "h3":
-      addHeadingToGuide( block );
+      addHeadingToGuide( block, content, isNew );
       break;
     
     case "code":
-      addCodeToGuide( block );
+      addCodeToGuide( block, content, isNew );
     
   }
+  
+  // add delete button to each block
+  block.append('<div class="delete">delete</div>');
+  
+  block.find('.delete').click(function() {
+    block.remove();
+  });
   
   // add class to mark this tool as inserted
   block.addClass('in-guide');
@@ -111,7 +104,7 @@ function updateBlockAfterSort( block ) {
   
 }
 
-function addParagraphToGuide( paragraph, content ) {
+function addParagraphToGuide( paragraph, content, isNew ) {
   
   content = content || ""
   
@@ -128,11 +121,18 @@ function addParagraphToGuide( paragraph, content ) {
     bodyStyle: ""
   })[0];
   
-  editor.focus();
+  if(isNew) editor.focus();
   editor.change( function() { resizeParagraphEditor( $(this)[0] ); } );
   $(editor.doc).scroll( function() { resizeParagraphEditor(editor); });
   
   editor.$frame.attr('scrolling', 'no');
+  
+  $('div.delete', paragraph).live("click", function() {
+    editor.disable(true);
+    editor = null;
+    $('div.delete', paragraph).die("click");
+  });
+  
 }
 
 function resizeParagraphEditor( editor ) {
@@ -147,7 +147,7 @@ function resizeParagraphEditor( editor ) {
   
 }
 
-function addHeadingToGuide( heading, content ) {
+function addHeadingToGuide( heading, content, isNew ) {
   content = content || "";
   var preText = "";
   
@@ -163,9 +163,11 @@ function addHeadingToGuide( heading, content ) {
   
   // headings are based on text fields
   heading.html( preText + '<input type="text" value="' + content + '">');
+  
+  if(isNew) heading.find('input').focus();
 }
 
-function addCodeToGuide( codeBlock, content ) {
+function addCodeToGuide( codeBlock, content, isNew ) {
   
   content = content || ""
   
@@ -213,8 +215,9 @@ function addCodeToGuide( codeBlock, content ) {
     onBlur: function() { editor.save(); } // push contents to textarea 
   });
   
-  editor.focus();
+  if(isNew) editor.focus();
   editor.setValue( $.trim(content) );
+  editor.save();
   
   // change CodeMirror mode on selection change
   codeBlock.find('select.editor-mode').change(function(event) {
@@ -228,6 +231,10 @@ function addCodeToGuide( codeBlock, content ) {
     event.stopPropagation();
   });
   
+  $('div.delete', codeBlock).live("click", function() {
+    editor.toTextArea();
+    $('div.delete', codeBlock).die("click");
+  });
 }
 
 $('#guide-submit').click(function(event) {
