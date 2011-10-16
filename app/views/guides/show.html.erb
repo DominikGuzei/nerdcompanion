@@ -27,8 +27,8 @@
          when "paragraph" %>
          
           <p>
-            <%= sanitize block.content, :tags => %w(span div strong italic ul ol li), 
-                                        :attributes => %w(style) %>
+            <%= sanitize block.content, :tags => %w(span div strong italic ul ol li a), 
+                                        :attributes => %w(style href) %>
           </p>
       
       <% when "h1" %>
