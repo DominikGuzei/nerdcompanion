@@ -7,6 +7,15 @@
   <label>Description:</label>
   <textarea id="guide-description"><%= guide.description %></textarea>
   
+  <label>Guide Goals</label>
+  <p>After reading this guide the reader will:</p>
+  
+  <ul id="guide-goals">
+    <li>Know how awesome NerdCompanion is (click to edit)</li>
+  </ul>
+  
+  <input id="add-guide-goal" type="button" value="add goal" />
+  
 <% end %>
 
 <% content_for :main do %>
