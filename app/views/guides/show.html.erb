@@ -10,7 +10,8 @@
   <% end %>
   <h2 id="guide-title"><%= @guide.title %></h2>
   <p><%= @guide.description %></p>
-    
+  
+  <p>After reading this guide you will:</p>  
   <ul>
     <% @guide.goals.each do |goal| %>
       <li><%= goal.content %></li>
