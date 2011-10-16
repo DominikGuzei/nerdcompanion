@@ -236,29 +236,48 @@ function addCodeToGuide( codeBlock, content, isNew ) {
 }
 
 /* GUIDE GOALS */
-$('#guide-goals li').live('click', function() {
-  $(this).html('<input type="text" value="' + $(this).html() + '" />');
-  var input = $(this).find('input');
+
+// adds handler to start editing goal
+$('li', '#guide-goals').live('click', function() {
   
-  input.focus();
-  input.select();
-  
-  input.blur(function() {
-    inputToNormal( $(this) );
-  });
-  
-  input.keyup(function(event) {
-    if (event.keyCode == '13') { 
-      event.preventDefault();
-      inputToNormal( $(this) );
-    }
-  });
-  
-  function inputToNormal( input ) {
-    input.closest('li').html( input.val() );
+  // only if not editing
+  if($(this).find('input').size() == 0) {
+    var contentSpan = $(this).find('.content');
+    contentSpan.html('<input type="text" value="' + contentSpan.html() + '" />');
+    $(this).find('input').select();
   }
 });
 
+// Add handlers to exit edit mode
+$('li input', '#guide-goals').live('blur keyup', function(event) {
+  
+  event.stopImmediatePropagation();
+  
+  if(event.type == "keyup" && event.keyCode == '13') {
+    event.preventDefault();
+    $(this).closest('.content').html( $(this).val() );
+    
+  } else if(event.type == 'blur') {
+    $(this).closest('.content').html( $(this).val() );
+  }
+  
+});
+
+// add handlers to delete a goal
+$('.delete', '#guide-goals').live('click', function() {
+  $(this).closest('li').remove();
+});
+
+// add goal
+$('#add-guide-goal').click(function() {
+  var html = "<li>";
+  html += '<span class="content"><input type="text" value="New Goal" /></span>';
+  html += '<span class="delete">delete</span>';
+  html += '</li>';
+  
+  $('#guide-goals').append(html);
+  $('#guide-goals li:last input').select();
+});
 
 $('#guide-submit').click(function(event) {
   event.preventDefault();
