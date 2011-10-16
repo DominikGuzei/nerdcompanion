@@ -13,6 +13,6 @@ class Guide
   
   belongs_to :user
   
-  attr_accessible :title, :description, :blocks
+  attr_accessible :title, :description, :blocks, :goals
   validates_presence_of :title, :description
 end

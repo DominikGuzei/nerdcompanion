@@ -286,8 +286,16 @@ $('#guide-submit').click(function(event) {
   var guide = {
     title: $('#guide-title').val(),
     description: $('#guide-description').val(),
+    goals: [],
     blocks: []
   };
+  
+  // gather all goals
+  $('#guide-goals li').each(function() {
+    guide.goals.push({
+      content: $(this).find('.content').html()
+    });
+  });
   
   // gather all content blocks of the guide
   $('#guide-content-list li').each(function() {
