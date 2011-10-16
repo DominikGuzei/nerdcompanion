@@ -11,6 +11,11 @@
   <h2 id="guide-title"><%= @guide.title %></h2>
   <p><%= @guide.description %></p>
     
+  <ul>
+    <% @guide.goals.each do |goal| %>
+      <li><%= goal.content %></li>
+    <% end %>
+  </ul>
 <% end %>
 
 <% content_for :main do %>
