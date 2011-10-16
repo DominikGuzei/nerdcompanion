@@ -10,31 +10,54 @@
   <title>NerdCompanion - Rails Guides for the Rest of us</title>
   <meta name="description" content="Creating beautiful guides made easy.">
   <meta name="author" content="Dominik Guzei">
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :dynamic_stylesheets %>
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= params[:controller] %>">
 	
+	<a href="https://github.com/DominikGuzei/nerdcompanion">
+	  <img style="z-index: 1000; position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub">
+  </a>
+	
 	<div id="topNav">
-    <div class="wrapper"></div>
+    <div class="wrapper">
+      <%= render 'shared/top_navigation' %>
+    </div>
   </div>
   
   <div id="header">
 		<div class="wrapper clearfix">
-      <h1><%= link_to_unless_current("NerdCompanion Home", { :controller => "guide",  :action => "index" }) %></h1>
+      <h1><%= link_to_unless_current("NerdCompanion Home", { :controller => "guides",  :action => "index" }) %></h1>
     	<p class="hide"><a href="#mainCol">Skip navigation</a>.</p>
-      <%= render 'shared/navigation' %>
+      <%= render 'shared/main_navigation' %>
     </div>
   </div>
   
   <div id="main" role="main">
-    <%= yield %>
+    <div id="feature">
+      <div class="wrapper">
+        <%= yield :featured %>
+        </div>
+    </div>
+    
+    <div id="container">
+      <div class="wrapper">
+        <div id="mainCol">
+          <%= yield :main %>
+        </div>
+      </div>
+    </div>
+  </div>
+      
+  <div id="footer">
+    <div class="wrapper">
+      <%= yield :footer %>
+    </div>
   </div>
   
-  <div id="footer">
-    <div class="wrapper"></div>
-  </div>
-    
+  <%= cdn_jquery_tag %>
+  <%= javascript_include_tag "application" %>
+  <%= yield :dynamic_javascripts %>  
 </body>
 </html>

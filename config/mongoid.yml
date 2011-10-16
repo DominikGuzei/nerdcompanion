@@ -1,11 +1,11 @@
 development:
   host: localhost
-  database: nerd_composer_development
+  database: nerd_companion_development
 
 test:
   host: localhost
-  database: nerd_composer_test
+  database: nerd_companion_test
 
 # set these environment variables on your prod server
 production:
-  uri: <%= ENV['MONGOHQ_URL'] %>
+  uri: <%= ENV['MONGOLAB_URI'] %>

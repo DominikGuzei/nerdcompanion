@@ -1,0 +1,277 @@
+/* @override http://localhost:3000/assets/guide_editor.css?body=1 */
+
+/*
+ *= require jquery_cleditor
+ */
+
+#feature .wrapper {
+  padding-top: 1em;
+}
+
+h2 {
+  margin-bottom: 1em;
+}
+
+#guide-title {
+  font-size: 2.1428em;
+  line-height: 1em;
+  margin: 0.3em 0 .6em;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  width: 800px;
+}
+
+#guide-description {
+  width: 800px;
+  height: 100px;
+  padding: 5px 10px;
+  font-size: 1.2857em;
+  margin-bottom: 0.75em;
+}
+
+#feature label {
+  font-size: 1.3em;
+}
+
+/*  guide goals */
+#guide-goals .content {
+  display: block;
+  float: left;
+}
+
+#guide-goals input {
+  font-size: 1em;
+  padding: 3px;
+  position: relative;
+  top: -5px;
+  left: -2px;
+  line-height: 1em;
+  width: 400px;
+}
+
+#guide-goals .delete {
+  border: 1px solid #da4566;
+  padding: 3px 5px;
+  font-size: 0.8em;
+  color: #340000;
+  background: #d58c96;
+  margin-left: 5px;
+}
+
+#guide-goals .delete:hover {
+  background: #d77680;
+  cursor: pointer;
+}
+
+#add-guide-goal {
+  border: 1px solid #85a640;
+  padding: 6px 10px;
+  background: #9bce86;
+  font-size: 1em;
+  color: #333;
+  font-weight: bold;
+}
+
+#add-guide-goal:hover {
+  background: #77bd6f;
+  cursor: pointer;
+}
+
+/* GUIDE CONTENT BLOCKS */
+
+#guide-toolbox-list {
+  padding: 1em 0;
+  background: url(/assets/footer_tile.gif) repeat-x;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #222;
+  margin: 0;
+  list-style-type: none;
+  z-index: 1000;
+}
+
+#guide-toolbox-list li.tool {
+  display: block;
+  padding: 0.1em 0.8em;
+  line-height: 2em;
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  margin-left: 1em;
+  color: black;
+  cursor: move;
+  background-image: none;
+}
+
+#guide-content-list {
+  border: 1px solid #ccc;
+  background: #efefef;
+  min-height: 200px;
+  width: 100%;
+  margin: 1em 0;
+}
+
+#guide-content-list li.tool {
+  padding: 0;
+  margin: 0.5em 0;
+  background: none;
+  position: relative;
+}
+
+/* delete button on blocks */
+li.tool .delete {
+  position: absolute;
+  top: 0px;
+  right: -50px;
+  padding: 2px 10px;
+  background-color: #f7928d;
+  border: 1px solid #8b8b8b;
+  color: #333;
+  display: none;
+}
+
+li.tool:hover .delete {
+  display: block;
+}
+
+li.tool .delete:hover {
+  background-color: #fa6a68;
+  cursor: pointer;
+}
+
+li.h1 .delete {
+  top: 3px;
+  padding: 6px 10px;
+}
+
+li.h2 .delete, li.h3 .delete {
+  top: 3px;
+  padding: 0 10px;
+}
+
+/* headings */
+.in-guide h3, .in-guide h4, .in-guide h5 {
+  cursor: move;
+}
+
+/* HEADING 1 */
+#guide-content-list li.h1 h3 {
+  display: inline;
+  margin: 0 10px;
+  color: #999;
+}
+
+#guide-content-list li.h1 input {
+  font-size: 1.7142em;
+  line-height: 1.286em;
+  font-weight: bold;
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 554px;
+}
+
+/* HEADING 2 */
+#guide-content-list li.h2 h4 {
+  display: inline;
+  margin: 10px 12px 10px 15px;
+  color: #999;
+}
+
+#guide-content-list li.h2 input {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: bold;
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 559px;
+}
+
+/* HEADING 3 */
+#guide-content-list li.h3 h5 {
+  display: inline;
+  margin: 10px 11px 10px 21px;
+  color: #999;
+}
+
+#guide-content-list li.h3 input {
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: bold;  
+  padding: 0.1em 0.3em;
+  border: 1px solid #ccc;
+  width: 559px;
+}
+
+/* PARAGRAPH */
+#guide-content-list li.paragraph {
+  height: 100px;
+  padding-right: 15px;
+  margin-left: 50px;
+} 
+
+#guide-submit {
+  padding: 0.5em 1em;
+  border: 1px solid #999;
+  font-size: 1.5em;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+#guide-submit:hover {
+  color: #1c5ec3;
+  background-color: #c8fffb;
+}
+
+.cleditorToolbar {
+  cursor: move;
+}
+
+.cleditorGroup {
+  cursor: pointer;
+}
+
+/* CODEMIRROR EDITOR */
+.in-guide.tool.code {
+  min-height: 100px;
+}
+
+.in-guide.tool.code .language-select {
+  margin-left: 50px;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  width: 557px;
+  padding-left: 10px;
+  background-color: #dedede;
+  cursor: move;
+}
+
+.in-guide.tool.code select {
+  margin: 4px 0 3px 10px;
+}
+
+.CodeMirror {
+  margin-left: 50px;
+  border: 1px solid #ccc;
+  width: 567px;
+  background-color: #fff;
+  font-size: 1.05em;
+}
+
+.CodeMirror-scroll {
+  height: auto;
+  min-height: 100px;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%
+}
+
+.CodeMirror-gutter {
+  background-color: #efefef;
+}
+
+.CodeMirror-lines {
+  margin-left: 0.5em;
+}

@@ -15,12 +15,13 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem "sproutcore-rails"
 
 gem "bson_ext"
 gem "mongoid"
+gem 'mongoid_slug'
 gem "omniauth"
 gem "frontend-helpers"
+gem 'kaminari'
 
 group :development do
   gem "thor"
@@ -40,4 +41,10 @@ group :test do
   gem "factory_girl_rails"
   gem "cucumber-rails"
   gem "capybara"
+  gem "rb-fsevent"
+  gem "growl_notify"
+end
+
+group :production do
+  gem "newrelic_rpm"
 end

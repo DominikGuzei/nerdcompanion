@@ -1,0 +1,9 @@
+
+<%= render :partial => "shared/guide_editor", 
+           :locals => { 
+             :guide => @guide,
+             :headline => "Create new Guide",
+             :url => guides_path,
+             :action => 'POST'
+           } 
+%>

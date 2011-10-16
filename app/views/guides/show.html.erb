@@ -1,0 +1,56 @@
+
+<% content_for :featured do %>
+  
+  <p class="author">This guide was written by <%= link_to @guide.user.name, @guide.user %></p>
+  <% if @guide.user = current_user %>
+  <div id="guide-menu">
+    <%= link_to "Edit this Guide", edit_guide_path(@guide), :class => "edit" %>
+    <%= link_to "Delete this Guide", guide_path(@guide), :class => "delete", :method => :delete %>
+  </div>
+  <% end %>
+  <h2 id="guide-title"><%= @guide.title %></h2>
+  <p><%= @guide.description %></p>
+  
+  <p>After reading this guide you will:</p>  
+  <ul>
+    <% @guide.goals.each do |goal| %>
+      <li><%= goal.content %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% content_for :main do %>
+      
+  <% @guide.blocks.each do |block| %>
+    
+    <% case block.type
+         when "paragraph" %>
+         
+          <p>
+            <%= sanitize block.content, :tags => %w(span div strong italic ul ol li), 
+                                        :attributes => %w(style) %>
+          </p>
+      
+      <% when "h1" %>
+        <h3><%= block.content %></h3>
+        
+      <% when "h2" %>
+        <h4><%= block.content %></h4>
+        
+      <% when "h3" %>
+        <h5><%= block.content %></h5>
+        
+      <% when "code" %>
+        <pre class="code_container" data-meta="<%= block.meta %>">
+          <textarea class="hidden"><%=raw block.content %></textarea>
+        </pre>
+        
+    <% end %>
+    
+  <% end %>
+      
+<% end %>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_viewer" %>
+<%end%>

@@ -1,0 +1,42 @@
+/* @override http://localhost:3000/assets/codemirror/theme/elegant.css?body=1 */
+
+span.cm-number, span.cm-string {
+  color: #5f8659;
+}
+span.cm-atom {
+  color: #5f8659;
+}
+span.cm-tag {
+	color: #5f8659;
+}
+span.cm-comment {
+	color: #adafab;font-style: italic;
+}
+span.cm-meta {
+	color: #555;font-style: italic;
+}
+span.cm-variable {
+	color: black;
+}
+span.cm-variable-2 {
+	color: #b11;
+}
+span.cm-qualifier {
+	color: #555;
+}
+span.cm-keyword {
+	color: #884402;
+}
+span.cm-property {
+	color: #3c6798;
+}
+span.cm-builtin {
+	color: #30a;
+}
+span.cm-error {
+	background-color: #fdd;
+}
+span.cm-def {
+	color: #464947;
+	font-weight: bold;
+}

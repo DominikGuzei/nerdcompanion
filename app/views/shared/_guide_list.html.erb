@@ -1,0 +1,20 @@
+
+<ul id="guide-list">
+  <% guides.each do |guide| %> 
+    <li class="guide clearfix">
+      <%= link_to guide.title, guide, :class => 'title' %>
+      <span class="meta">
+        Written by <%= link_to guide.user.name, user_path( guide.user ) %>
+        on <%= l(guide.created_at, :format=>:guide_list) %>
+      </span>
+      <p><%= guide.description %></p>
+      
+      <% if guide.user == current_user %>
+      <div class="menu">
+        <%= link_to "Edit", edit_guide_path(guide), :class => "edit" %>
+        <%= link_to "Delete", guide_path(guide), :class => "delete", :method => :delete %>
+      </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

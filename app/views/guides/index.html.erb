@@ -1,0 +1,37 @@
+
+<% content_for :featured do %>
+  <h2>Rails Guides for the Rest of us</h2>
+  <p>Ever noticed how beautiful the Ruby on Rails guides are?<br />
+  	Now its your turn to spread knowledge with style.</p>
+  
+  <ul>
+		<li>Sign in with your Twitter account</li>
+		<li>Create your first guide</li>
+		<li>Share it with the rest of the world</li>
+		<li>Spread the word about NerdCompanion!</li>
+	</ul>
+	
+  <div id="subCol">
+    <h3 class="chapter"><img src="/assets/chapters_icon.gif" alt="" />Chapters</h3>
+    <ol class="chapters">
+      <li><a href="#">Soon your guides will</a></li>
+      <li><a href="#">become even more awesome</a></li>
+      <li><a href="#">when your headlines are</a></li>
+      <li><a href="#">automatically building</a></li>
+      <li><a href="#">a hierachy of chapters!</a></li>
+    </ol>
+  </div>
+<% end %>
+
+<% content_for :main do %>
+  
+  <h3>Newest Guides:</h3>
+ 
+  <%= render :partial => "shared/guide_list", :locals => { :guides => @guides } %>
+  
+  <%= paginate @guides %>
+<% end %>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_viewer" %>
+<%end%>
