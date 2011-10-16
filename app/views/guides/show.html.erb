@@ -21,7 +21,7 @@
          when "paragraph" %>
          
           <p>
-            <%= sanitize block.content, :tags => %w(span strong italic ul ol li), 
+            <%= sanitize block.content, :tags => %w(span div strong italic ul ol li), 
                                         :attributes => %w(style) %>
           </p>
       

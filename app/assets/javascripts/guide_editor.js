@@ -13,7 +13,7 @@ $(function() {
 	  revert: true
 	});
 
-	$("#guide-toolbox-list, #guide-content-list").disableSelection();
+	$("#guide-toolbox-list").disableSelection();
 	
 	setupExistingBlocks();
 });
@@ -125,8 +125,6 @@ function addParagraphToGuide( paragraph, content, isNew ) {
   editor.change( function() { resizeParagraphEditor( $(this)[0] ); } );
   $(editor.doc).scroll( function() { resizeParagraphEditor(editor); });
   
-  editor.$frame.attr('scrolling', 'no');
-  
   $('div.delete', paragraph).live("click", function() {
     editor.disable(true);
     editor = null;
@@ -162,7 +160,7 @@ function addHeadingToGuide( heading, content, isNew ) {
   }
   
   // headings are based on text fields
-  heading.html( preText + '<input type="text" value="' + content + '">');
+  heading.html( preText + '<input type="text" value="' + content + '" />');
   
   if(isNew) heading.find('input').focus();
 }
