@@ -1,6 +1,6 @@
 class GuidesController < ApplicationController
   
-  before_filter :require_login, :only => ['new', 'create']
+  before_filter :require_login, :only => ['new', 'create', 'edit', 'update', 'delete']
   
   def index
   end
@@ -49,6 +49,16 @@ class GuidesController < ApplicationController
       end
     end
     
+  end
+ 
+  def destroy
+    @guide = Guide.find_by_permalink(params['id'])
+    
+    if @guide
+      @guide.destroy
+    end
+    
+    redirect_to user_path( current_user )
   end
  
   private
