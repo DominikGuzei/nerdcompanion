@@ -33,6 +33,51 @@ h2 {
   font-size: 1.3em;
 }
 
+/*  guide goals */
+#guide-goals .content {
+  display: block;
+  float: left;
+}
+
+#guide-goals input {
+  font-size: 1em;
+  padding: 3px;
+  position: relative;
+  top: -5px;
+  left: -2px;
+  line-height: 1em;
+}
+
+#guide-goals .delete {
+  border: 1px solid #da4566;
+  padding: 3px 5px;
+  font-size: 0.8em;
+  color: #340000;
+  background: #d58c96;
+  margin-left: 5px;
+}
+
+#guide-goals .delete:hover {
+  background: #d77680;
+  cursor: pointer;
+}
+
+#add-guide-goal {
+  border: 1px solid #85a640;
+  padding: 6px 10px;
+  background: #9bce86;
+  font-size: 1em;
+  color: #333;
+  font-weight: bold;
+}
+
+#add-guide-goal:hover {
+  background: #77bd6f;
+  cursor: pointer;
+}
+
+/* GUIDE CONTENT BLOCKS */
+
 #guide-toolbox-list {
   padding: 1em 0;
   background: url(/assets/footer_tile.gif) repeat-x;
