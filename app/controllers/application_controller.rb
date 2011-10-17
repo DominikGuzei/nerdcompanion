@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
+  helper_method :current_user_can_edit?
 
   private
     def current_user
@@ -28,6 +29,10 @@ class ApplicationController < ActionController::Base
       if !current_user
         redirect_to home_path, :alert => 'You need to sign in for access to this page.'
       end
+    end
+    
+    def current_user_can_edit?(guide)
+      (current_user && current_user.is_admin?) || current_user == guide.user
     end
 
 end
