@@ -9,12 +9,13 @@
       </span>
       <p><%= guide.description %></p>
       
-      <% if guide.user == current_user %>
+      <% if current_user_can_edit?(guide) %>
       <div class="menu">
         <%= link_to "Edit", edit_guide_path(guide), :class => "edit" %>
         <%= link_to "Delete", guide_path(guide), :class => "delete", :method => :delete %>
       </div>
       <% end %>
+      
     </li>
   <% end %>
 </ul>

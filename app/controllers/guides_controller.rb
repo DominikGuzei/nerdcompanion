@@ -1,17 +1,14 @@
 class GuidesController < ApplicationController
   
   before_filter :require_login, :only => ['new', 'create', 'edit', 'update', 'delete']
+  before_filter :ensure_guide_exists, :only => ['show', 'edit', 'update', 'delete']
+  before_filter :authorise_as_owner, :only =>['edit', 'update', 'delete']
   
   def index
     @guides = Guide.order_by(:created_at.desc).page(params['page'] || 1)
   end
   
   def show
-    @guide = Guide.find_by_permalink(params['id'])
-    
-    if not @guide
-      redirect_to home_path
-    end
   end
   
   def new
@@ -30,35 +27,17 @@ class GuidesController < ApplicationController
   end
  
   def edit
-    @guide = Guide.find_by_permalink(params['id'])
-    
-    if not @guide
-      redirect_to home_path
-    end
   end
   
-  def update
-    @guide = Guide.find_by_permalink(params['id'])
-    
-    if not @guide
-      redirect_to home_path
-    end
-    
+  def update    
     if @guide.update_attributes(params[:guide])
       respond_to do |format|
         format.json { render :json => @guide.to_json }
       end
     end
-    
   end
  
   def destroy
-    @guide = Guide.find_by_permalink(params['id'])
-    
-    if @guide
-      @guide.destroy
-    end
-    
     redirect_to user_path( current_user )
   end
  
@@ -68,6 +47,20 @@ class GuidesController < ApplicationController
     unless user_signed_in?
       flash[:error] = "You must be logged in to access this section"
       redirect_to home_path # halts request cycle
+    end
+  end
+  
+  def ensure_guide_exists
+    @guide = Guide.find_by_permalink(params['id'])
+    
+    if not @guide
+      redirect_to home_path
+    end
+  end
+  
+  def authorise_as_owner
+    unless (current_user && current_user.is_admin?) || current_user == @guide.user
+      redirect_to home_path
     end
   end
   
