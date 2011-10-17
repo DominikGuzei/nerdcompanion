@@ -7,9 +7,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>NerdCompanion - Rails Guides for the Rest of us</title>
-  <meta name="description" content="Creating beautiful guides made easy.">
+  
+  <meta name="description" content="Rails Guides for the rest of us.">
   <meta name="author" content="Dominik Guzei">
+  
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
   <%= stylesheet_link_tag "application" %>
   <%= yield :dynamic_stylesheets %>
   <%= csrf_meta_tags %>
@@ -53,6 +59,11 @@
   <div id="footer">
     <div class="wrapper">
       <%= yield :footer %>
+      <p class="credits">
+        NerdCompanion was dreamed up and created by <a href="http://wizzart.at/about.html">Dominik Guzei</a><br />
+        Thanks to <a href="https://github.com/wycats">Yehuda Katz</a> and others for the awesome <a href="https://github.com/wycats/guides">Rails Guides</a><br />
+        Logo designed by <a href="http://www.doublejdesign.co.uk">Double-J Design</a>
+      </p>
     </div>
   </div>
   
