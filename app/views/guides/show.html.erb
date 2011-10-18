@@ -15,12 +15,15 @@
   <h2 id="guide-title"><%= @guide.title %></h2>
   <p><%= @guide.description %></p>
   
-  <p>After reading this guide you will:</p>  
+  <p>After reading this guide you will:</p>
   <ul>
     <% @guide.goals.each do |goal| %>
       <li><%= goal.content %></li>
     <% end %>
   </ul>
+  
+  <a href="https://twitter.com/share" class="twitter-share-button" data-text="<%= @guide.title %>" data-count="vertical" data-via="NerdCompanion">Tweet</a>
+  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 <% end %>
 
 <% content_for :main do %>
@@ -56,7 +59,7 @@
   <div id="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_shortname = 'nerdcompanion';
-    var disqus_identifier = <%= @guide.id %>;
+    var disqus_identifier = '<%= @guide.id %>';
     
     <% unless Rails.env.production? %>
     var disqus_developer = 1;

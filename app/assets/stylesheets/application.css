@@ -451,6 +451,29 @@ div.important p, div.caution p, div.warning p, div.note p, div.info p {
   border: none;
 }
 
+/* GUIDES */
+
+.featured {
+  position: relative;
+}
+
+.twitter-share-button {
+  position: absolute;
+  right: 200px;
+  top: 3.4em;
+}
+
+/* DISQUS */
+#mainCol #disqus_thread li {
+  background: none;
+  padding: 0;
+}
+
+#disqus_thread {
+  border-top: 1px solid #eee;
+  margin-top: 2em;
+}
+
 /* User Profile */
 
 #feature p.author {
