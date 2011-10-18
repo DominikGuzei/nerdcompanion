@@ -70,6 +70,9 @@ h2 {
   font-size: 1em;
   color: #333;
   font-weight: bold;
+  clear: both;
+  display: block;
+  margin-top: 1em;
 }
 
 #add-guide-goal:hover {
