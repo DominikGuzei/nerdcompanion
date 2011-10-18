@@ -57,6 +57,13 @@
   <% end %>
   
   <div id="disqus_thread"></div>
+  <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+<% end %>
+
+<% content_for :dynamic_javascripts do %>
+  <%= javascript_include_tag "guide_viewer" %>
+  
   <script type="text/javascript">
     var disqus_shortname = 'nerdcompanion';
     var disqus_identifier = '<%= @guide.id %>';
@@ -71,10 +78,4 @@
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
   </script>
-  <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-  
-<% end %>
-
-<% content_for :dynamic_javascripts do %>
-  <%= javascript_include_tag "guide_viewer" %>
 <%end%>
