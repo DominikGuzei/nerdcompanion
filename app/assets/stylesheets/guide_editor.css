@@ -224,6 +224,20 @@ li.h2 .delete, li.h3 .delete {
   background-color: #c8fffb;
 }
 
+#guide-submit.disabled, #guide-submit.disabled:hover {
+  color: #999;
+  border-color: #ccc;
+  background-color: #ddd;
+  cursor: default;
+  display: inline;
+}
+
+p.sorry-sign-in {
+  display: inline;
+  margin-left: 1em;
+  color: #a2525e;
+}
+
 .cleditorToolbar {
   cursor: move;
 }

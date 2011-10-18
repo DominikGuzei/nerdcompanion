@@ -1,6 +1,6 @@
 class GuidesController < ApplicationController
   
-  before_filter :require_login, :only => ['new', 'create', 'edit', 'update', 'delete']
+  before_filter :require_login, :only => ['create', 'edit', 'update', 'delete']
   before_filter :ensure_guide_exists, :only => ['show', 'edit', 'update', 'delete']
   before_filter :authorise_as_owner, :only =>['edit', 'update', 'delete']
   
