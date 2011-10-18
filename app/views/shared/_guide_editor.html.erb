@@ -46,17 +46,19 @@
     <% end %>
   </ul>
   
-  <input type="button" id="guide-submit" 
-         data-url="<%= url %>" 
-         data-action="<%= action %>" value="Save">
+  <% if user_signed_in? %>
+  <input type="button" id="guide-submit" data-url="<%= url %>" data-action="<%= action %>" value="Save" />
+  <% else %>
+  <input type="button" class="disabled" id="guide-submit" value="Save" />
+  <p class="sorry-sign-in">Sorry, you have to sign in with your Twitter account to save guides.</p>
+  <% end %>
   
   <ul id="guide-toolbox-list">
     <li class="tool h1" data-block="h1">Heading 1</li>
     <li class="tool h2" data-block="h2">Heading 2</li>
     <li class="tool h3" data-block="h3">Heading 3</li>
     <li class="tool paragraph" data-block="paragraph">Paragraph</li>
-    <li class="tool code" data-block="code" 
-        data-meta="javascript">Source Code</li>
+    <li class="tool code" data-block="code" data-meta="javascript">Source Code</li>
   </ul>
   
 <% end %>

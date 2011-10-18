@@ -70,6 +70,9 @@ h2 {
   font-size: 1em;
   color: #333;
   font-weight: bold;
+  clear: both;
+  display: block;
+  margin-top: 1em;
 }
 
 #add-guide-goal:hover {
@@ -222,6 +225,20 @@ li.h2 .delete, li.h3 .delete {
 #guide-submit:hover {
   color: #1c5ec3;
   background-color: #c8fffb;
+}
+
+#guide-submit.disabled, #guide-submit.disabled:hover {
+  color: #999;
+  border-color: #ccc;
+  background-color: #ddd;
+  cursor: default;
+  display: inline;
+}
+
+p.sorry-sign-in {
+  display: inline;
+  margin-left: 1em;
+  color: #a2525e;
 }
 
 .cleditorToolbar {

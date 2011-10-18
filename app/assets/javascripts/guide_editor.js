@@ -343,18 +343,19 @@ $('#guide-submit').click(function(event) {
 
 function sendGuideDataToServer( guide ) {
   
-  var url = $('#guide-submit').attr('data-url');
-  var action = $('#guide-submit').attr('data-action');
-  
-  $.ajax(url, {
-    type: action,
-    data: JSON.stringify({
-      guide: guide
-    }),
-    contentType: "application/json",
-    success: function(guide) {
-      window.location = "/guides/" + guide.permalink;
-    }
-  });
-  
+  if(!$('#guide-submit').hasClass('disabled')) {
+    var url = $('#guide-submit').attr('data-url');
+    var action = $('#guide-submit').attr('data-action');
+    
+    $.ajax(url, {
+      type: action,
+      data: JSON.stringify({
+        guide: guide
+      }),
+      contentType: "application/json",
+      success: function(guide) {
+        window.location = "/guides/" + guide.permalink;
+      }
+    });
+  }
 }

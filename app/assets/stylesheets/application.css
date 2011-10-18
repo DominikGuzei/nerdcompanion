@@ -234,7 +234,7 @@ h1 {
 h2 {
   font-size: 2.1428em;
   line-height: 1em;
-  margin: 0.7em 0 .2333em;
+  margin: 0.7em 0 .5em;
   font-weight: bold;
   }
 
@@ -302,7 +302,9 @@ h6 {
   margin-bottom: 0.75em;
 }
 
-#feature ul {margin-left: 0;}
+#feature ul {
+	margin: 1em 0 0 0;
+}
 #feature ul li {
   list-style: none;
   background: url(/assets/check_bullet.gif) no-repeat left 0.5em;
@@ -449,6 +451,29 @@ div.important p, div.caution p, div.warning p, div.note p, div.info p {
   top: 0px;
   z-index: 100;
   border: none;
+}
+
+/* GUIDES */
+
+.featured {
+  position: relative;
+}
+
+.twitter-share-button {
+  position: absolute;
+  right: 200px;
+  top: 3.4em;
+}
+
+/* DISQUS */
+#mainCol #disqus_thread li {
+  background: none;
+  padding: 0;
+}
+
+#disqus_thread {
+  border-top: 1px solid #eee;
+  margin-top: 2em;
 }
 
 /* User Profile */
