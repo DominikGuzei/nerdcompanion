@@ -1,4 +1,6 @@
 
+<% title "#{@guide.title}" %>
+
 <% content_for :featured do %>
   
   <p class="author">This guide was written by <%= link_to @guide.user.name, @guide.user %></p>
