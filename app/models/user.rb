@@ -24,6 +24,14 @@ class User
     User.create(params)
 
   end
+  
+  def published_guides
+    guides.where( :is_draft => false )
+  end
 
+  def draft_guides
+    guides.where( :is_draft => true )
+  end
+  
 end
 

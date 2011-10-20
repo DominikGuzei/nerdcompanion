@@ -3,8 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
-  helper_method :current_user_can_edit?
-
+  helper_method :current_user_is_guide_owner?
+  helper_method :is_admin?
+  
   private
     def current_user
       begin
@@ -31,8 +32,12 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    def current_user_can_edit?(guide)
+    def current_user_is_guide_owner?(guide)
       (current_user && current_user.is_admin?) || current_user == guide.user
+    end
+    
+    def is_admin?
+      current_user && current_user.is_admin?
     end
 
 end

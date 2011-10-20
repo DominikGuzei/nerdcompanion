@@ -47,9 +47,13 @@
   </ul>
   
   <% if user_signed_in? %>
-  <input type="button" id="guide-submit" data-url="<%= url %>" data-action="<%= action %>" value="Save" />
+    <% if guide.is_draft %>
+    <input type="button" class="save-button" data-isdraft="true" data-url="<%= url %>" data-action="<%= action %>" value="Save as Draft" />
+    <% end %>  
+  <input type="button" class="save-button" data-isdraft="false" data-url="<%= url %>" data-action="<%= action %>" value="Save & Publish" />
   <% else %>
-  <input type="button" class="disabled" id="guide-submit" value="Save" />
+  <input type="button" class="save-button disabled" value="Save as Draft" />
+  <input type="button" class="save-button disabled" value="Save & Publish" />
   <p class="sorry-sign-in">Sorry, you have to sign in with your Twitter account to save guides.</p>
   <% end %>
   

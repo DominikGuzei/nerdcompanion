@@ -4,7 +4,7 @@
   <% if user_signed_in? %>
   
   	<li><%= link_to_unless_current('Create guide', new_guide_path, :id => 'create-guide') %></li>
-    <li><%= link_to_unless_current('My Guides', current_user, :id => 'my-guides') %></li>
+    <li><%= link_to_unless_current('My Profile', current_user, :id => 'profile-link') %></li>
     
   <% else %>
   	

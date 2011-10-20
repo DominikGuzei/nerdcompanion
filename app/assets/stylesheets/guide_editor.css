@@ -214,20 +214,20 @@ li.h2 .delete, li.h3 .delete {
   margin-left: 50px;
 } 
 
-#guide-submit {
+.save-button {
   padding: 0.5em 1em;
   border: 1px solid #999;
   font-size: 1.5em;
-  background-color: #ddd;
+  background: #9bce86;
   cursor: pointer;
 }
 
-#guide-submit:hover {
-  color: #1c5ec3;
-  background-color: #c8fffb;
+.save-button:hover {
+  background: #77bd6f;
+  cursor: pointer;
 }
 
-#guide-submit.disabled, #guide-submit.disabled:hover {
+.save-button.disabled, .save-button.disabled:hover {
   color: #999;
   border-color: #ccc;
   background-color: #ddd;
@@ -236,8 +236,7 @@ li.h2 .delete, li.h3 .delete {
 }
 
 p.sorry-sign-in {
-  display: inline;
-  margin-left: 1em;
+  margin-top: 1em;
   color: #a2525e;
 }
 

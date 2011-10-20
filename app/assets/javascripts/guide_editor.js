@@ -279,7 +279,7 @@ $('#add-guide-goal').click(function() {
   $('#guide-goals li:last input').select();
 });
 
-$('#guide-submit').click(function(event) {
+$('.save-button').click(function(event) {
   event.preventDefault();
   
   // save title and description
@@ -287,7 +287,8 @@ $('#guide-submit').click(function(event) {
     title: $('#guide-title').val(),
     description: $('#guide-description').val(),
     goals: [],
-    blocks: []
+    blocks: [],
+    is_draft: $(this).attr('data-isdraft')
   };
   
   // gather all goals
@@ -337,15 +338,9 @@ $('#guide-submit').click(function(event) {
     
   });
   
-  sendGuideDataToServer( guide );
-  
-});
-
-function sendGuideDataToServer( guide ) {
-  
-  if(!$('#guide-submit').hasClass('disabled')) {
-    var url = $('#guide-submit').attr('data-url');
-    var action = $('#guide-submit').attr('data-action');
+  if(!$(this).hasClass('disabled')) {
+    var url = $(this).attr('data-url');
+    var action = $(this).attr('data-action');
     
     $.ajax(url, {
       type: action,
@@ -358,4 +353,5 @@ function sendGuideDataToServer( guide ) {
       }
     });
   }
-}
+  
+});

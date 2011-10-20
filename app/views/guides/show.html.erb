@@ -5,7 +5,7 @@
   
   <p class="author">This guide was written by <%= link_to @guide.user.name, @guide.user %></p>
   
-  <% if current_user_can_edit?(@guide) %>
+  <% if current_user_is_guide_owner?(@guide) %>
   <div id="guide-menu">
     <%= link_to "Edit this Guide", edit_guide_path(@guide), :class => "edit" %>
     <%= link_to "Delete this Guide", guide_path(@guide), :class => "delete", :method => :delete %>
