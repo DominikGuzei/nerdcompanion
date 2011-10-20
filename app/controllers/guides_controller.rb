@@ -5,10 +5,13 @@ class GuidesController < ApplicationController
   before_filter :authorise_as_owner, :only =>['edit', 'update', 'delete']
   
   def index
-    @guides = Guide.order_by(:created_at.desc).page(params['page'] || 1)
+    @guides = Guide.published.order_by(:created_at.desc).page(params['page'] || 1)
   end
   
   def show
+    if @guide.is_draft && !current_user_is_guide_owner?(@guide)
+      redirect_to home_path
+    end
   end
   
   def new
@@ -29,7 +32,12 @@ class GuidesController < ApplicationController
   def edit
   end
   
-  def update    
+  def update
+    # once guide was published keep it published
+    unless @guide.is_draft
+      params[:guide][:is_draft] = false
+    end
+    
     if @guide.update_attributes(params[:guide])
       respond_to do |format|
         format.json { render :json => @guide.to_json }

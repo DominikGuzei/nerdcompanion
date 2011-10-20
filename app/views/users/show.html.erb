@@ -2,9 +2,17 @@
 <% title "#{@user.name}'s Profile" %>
 
 <% content_for :featured do %>
-  <h2><%= @user.name %>'s Guides</h2>
+  <h2><%= @user.name %>'s Profile</h2>
 <% end %>
 
 <% content_for :main do %>
-  <%= render :partial => "shared/guide_list", :locals => { :guides => @user.guides } %>
+
+  <% if @user == current_user || is_admin?  %>
+    <h3>Your Guide Drafts</h3>
+    <%= render :partial => "shared/guide_list", :locals => { :guides => @user.draft_guides } %>
+  <% end %>
+
+  <h3>Published Guides</h3>
+  <%= render :partial => "shared/guide_list", :locals => { :guides => @user.published_guides } %>
+  
 <% end %>
