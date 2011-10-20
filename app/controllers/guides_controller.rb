@@ -1,8 +1,8 @@
 class GuidesController < ApplicationController
   
-  before_filter :require_login, :only => ['create', 'edit', 'update', 'delete']
-  before_filter :ensure_guide_exists, :only => ['show', 'edit', 'update', 'delete']
-  before_filter :authorise_as_owner, :only =>['edit', 'update', 'delete']
+  before_filter :require_login, :only => ['create', 'edit', 'update', 'destroy']
+  before_filter :ensure_guide_exists, :only => ['show', 'edit', 'update', 'destroy']
+  before_filter :authorise_as_owner, :only =>['edit', 'update', 'destroy']
   
   def index
     @guides = Guide.published.order_by(:created_at.desc).page(params['page'] || 1)
@@ -46,6 +46,7 @@ class GuidesController < ApplicationController
   end
  
   def destroy
+    @guide.destroy
     redirect_to user_path( current_user )
   end
  
